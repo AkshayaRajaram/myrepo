@@ -12,23 +12,22 @@ import com.acc.exceptions.VirtualMainException;
 public abstract class AbstractDao {
 
 	@Autowired
-	private  SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	private static Logger log = Logger.getLogger(AbstractDao.class);
-	
 
 	public Session getSession() throws VirtualMainException {
 
-		//System.out.println("----------------------------"+sessionFactory.getCurrentSession());
 		if (sessionFactory != null) {
 			return sessionFactory.getCurrentSession();
 
 		} else {
-			
+
 			log.info("Connection to database is not correctly set..... ");
-			throw new VirtualMainException("Error in Transaction, Please re-Try. for more information check Logfile in C:\\VirtualExceptionLog\\virtualLog.txt",new NullPointerException());
+			throw new VirtualMainException(
+					"Error in Transaction, Please re-Try. for more information check Logfile in C:\\VirtualExceptionLog\\virtualLog.txt",
+					new NullPointerException());
 		}
-		
-		
+
 	}
 
 }

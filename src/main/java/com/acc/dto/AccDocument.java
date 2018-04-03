@@ -1,7 +1,5 @@
 package com.acc.dto;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,34 +14,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-@Table(name="ACC_DOCUMENT")
+@Table(name = "ACC_DOCUMENT")
 public class AccDocument {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer acc_Doc_Id;
 
-
 	@OneToOne
-	@JoinColumn(name="ACC_ID")
+	@JoinColumn(name = "ACC_ID")
 	private Account account;
-	
 
 	@OneToOne
-	@JoinColumn(name="DOC_ID")
+	@JoinColumn(name = "DOC_ID")
 	private Document document;
-	
-	
-	@Column(name="CREATED_BY")
+
+	@Column(name = "CREATED_BY")
 	private String created_By;
-		
-	@Column(name="CREATED_DATE")
+
+	@Column(name = "CREATED_DATE")
 	private Date created_Date;
-	
-	@Column(name="UPDATED_BY")
+
+	@Column(name = "UPDATED_BY")
 	private String updated_By;
 
-	@Column(name="UPDATED_DATE")
+	@Column(name = "UPDATED_DATE")
 	private Date updated_Date;
 
 	public Integer getAcc_Doc_Id() {
@@ -102,9 +97,4 @@ public class AccDocument {
 		this.updated_Date = updated_Date;
 	}
 
-	
-	
-	
-	
-	
 }

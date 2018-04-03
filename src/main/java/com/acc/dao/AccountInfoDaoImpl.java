@@ -11,42 +11,31 @@ import com.acc.dto.DocRevStatus;
 import com.acc.dto.Document;
 import com.acc.exceptions.VirtualMainException;
 
-
-
 @Repository
-public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao{
-/***
- * 
- */
+public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
+	/***
+	 * @throws VirtualMainException
+	 *             Returns list of account from database
+	 */
 	public List<Account> listAllAccount() throws VirtualMainException {
-		Session session=getSession();
-		//Session session=null;
-		
-		Query query=session.createQuery("from Account");
-		
-		
+		Session session = getSession();
+		Query query = session.createQuery("from Account");
 
-List<Account> accountList = query.list();
+		List<Account> accountList = query.list();
 
-		
 		return query.list();
 	}
 
-	
 	/***
-	 * 
+	 * @throws VirtualMainException
+	 *             Returns a list with document status information
 	 */
-	public List<DocRevStatus> listAccDocStatus(Integer accid) throws VirtualMainException {
-		// TODO Auto-generated method stub
-		Session session=getSession();
-		
+	public List<DocRevStatus> listAccDocStatus() throws VirtualMainException {
+
+		Session session = getSession();
+
 		Query query = session.createQuery("from DocRevStatus");
-		return query.list() ;
+		return query.list();
 	}
 
-	
-
-	
-
-	
 }

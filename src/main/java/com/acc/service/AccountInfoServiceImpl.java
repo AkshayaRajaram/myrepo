@@ -20,6 +20,10 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 	@Autowired
 	AccountInfoDao accountinfodao;
 
+	/**
+	 * This method creates one ArrayList Adds Reviewer data to ArrayList Returns
+	 * a list of reviewer
+	 */
 	public List<String> listAllReviewer() {
 		// Adding data to reviewer
 		List<String> tempreviewer = new ArrayList<String>();
@@ -28,14 +32,18 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 		tempreviewer.add("Team3");
 		tempreviewer.add("Team4");
 		tempreviewer.add("Team5");
-		//reviewer.setReviewerList(tempreviewer);
+
 		List<String> tempreviewer1 = new ArrayList<String>();
-		//tempreviewer1 = reviewer.getReviewerList();
+
 		return tempreviewer;
 	}
 
-	@Transactional(readOnly=true)
-	public List<Account> listAllAccount() throws VirtualMainException  {
+	/**
+	 * @throws VirtualMainException
+	 *             This method returns a AccountList
+	 */
+	@Transactional(readOnly = true)
+	public List<Account> listAllAccount() throws VirtualMainException {
 
 		List<Account> accountList = new ArrayList<Account>();
 		accountList = accountinfodao.listAllAccount();
@@ -44,31 +52,37 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 
 	}
 
-	@Transactional(readOnly=true)
+	/**
+	 * @param accid
+	 *            an AccountId
+	 * @throws VirtualMainException
+	 *             Adds the docstatus information to a list based on accountID
+	 *             creates map to store document
+	 *             status(missing,incorrect,incomplete) as true or false Returns
+	 *             document status
+	 */
+
+	@Transactional(readOnly = true)
 	public List<DocStatus> listDocRevsts(Integer accid) throws VirtualMainException {
 
-		List<DocRevStatus> docrevsts = accountinfodao.listAccDocStatus(accid);
+		List<DocRevStatus> docrevsts = accountinfodao.listAccDocStatus();
 		List<DocRevStatus> docrevsts1 = new ArrayList<DocRevStatus>();
 
 		for (DocRevStatus drs : docrevsts) {
-			if (drs.getAccount().getAccount_Id()==accid) {
+			if (drs.getAccount().getAccount_Id() == accid) {
 				docrevsts1.add(drs);
-			}		
+			}
 		}
-
-
 
 		List<DocStatus> docsts = new ArrayList();
 
-
 		for (DocRevStatus temp : docrevsts1) {
 			DocStatus dc = new DocStatus();
-			Map<String,Boolean> map = new HashMap<String,Boolean>();
+			Map<String, Boolean> map = new HashMap<String, Boolean>();
 			Boolean flag;
 			String sts;
-			if(temp.getValidationstatus().getStatus_Id()==2)
-			{
-				sts=temp.getValidationstatus().getStatus();
+			if (temp.getValidationstatus().getStatus_Id() == 2) {
+				sts = temp.getValidationstatus().getStatus();
 
 				dc.setDocid(temp.getDocument().getDoc_Id());
 				dc.setDocname(temp.getDocument().getDoc_Name());
@@ -79,9 +93,8 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 				docsts.add(dc);
 
 			}
-			if(temp.getValidationstatus().getStatus_Id()==3) 
-			{
-				sts=temp.getValidationstatus().getStatus();
+			if (temp.getValidationstatus().getStatus_Id() == 3) {
+				sts = temp.getValidationstatus().getStatus();
 				dc.setDocid(temp.getDocument().getDoc_Id());
 				dc.setDocname(temp.getDocument().getDoc_Name());
 				dc.setFilename(temp.getDocument().getFile_Name());
@@ -91,21 +104,19 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 				docsts.add(dc);
 
 			}
-			if(temp.getValidationstatus().getStatus_Id()==4) {
-				sts=temp.getValidationstatus().getStatus();
+			if (temp.getValidationstatus().getStatus_Id() == 4) {
+				sts = temp.getValidationstatus().getStatus();
 				dc.setDocid(temp.getDocument().getDoc_Id());
 				dc.setDocname(temp.getDocument().getDoc_Name());
-				dc.setFilename(temp.getDocument().getFile_Name()); 
+				dc.setFilename(temp.getDocument().getFile_Name());
 				map.put(sts, true);
 				dc.setStatus(map);
 				dc.setSts("Incorrect");
 				docsts.add(dc);
 
-
 			}
 
 		}
-
 
 		return docsts;
 	}

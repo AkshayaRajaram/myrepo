@@ -11,33 +11,30 @@ import javax.persistence.Id;
 
 @Entity
 public class Document {
-    
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	int doc_Id;
-	
 
-	@Column(name = "doc_Name") 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int doc_Id;
+
+	@Column(name = "doc_Name")
 	String doc_Name;
-	
-	@Column(name = "division") 
+
+	@Column(name = "division")
 	String division;
-	
-	@Column(name = "file_Name") 
+
+	@Column(name = "file_Name")
 	String file_Name;
 
-	
-
-	@Column(name = "created_By")  
+	@Column(name = "created_By")
 	String createdBy;
 
-	@Column(name = "created_Date")  
+	@Column(name = "created_Date")
 	Date createdDate;
 
-	@Column(name = "updated_By")  
+	@Column(name = "updated_By")
 	String updatedBy;
 
-	@Column(name = "updated_Date")  
+	@Column(name = "updated_Date")
 	Date updatedDate;
 
 	public int getDoc_Id() {
@@ -102,8 +99,6 @@ public class Document {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
-	} 
-
-
+	}
 
 }

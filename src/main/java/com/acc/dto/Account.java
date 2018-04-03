@@ -10,33 +10,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ACCOUNT")
+@Table(name = "ACCOUNT")
 public class Account {
 
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	int account_Id ;
-	
-	@Column(name = "account_Number")  
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int account_Id;
+
+	@Column(name = "account_Number")
 	String account_Number;
-	
-	@Column(name = "name") 
+
+	@Column(name = "name")
 	String name;
-	
-	@Column(name = "division") 
+
+	@Column(name = "division")
 	String division;
-	
-	
-	@Column(name = "created_By")  
+
+	@Column(name = "created_By")
 	String createdBy;
 
-	@Column(name = "created_Date")  
+	@Column(name = "created_Date")
 	Date createdDate;
 
-	@Column(name = "updated_By")  
+	@Column(name = "updated_By")
 	String updatedBy;
 
-	@Column(name = "updated_Date")  
+	@Column(name = "updated_Date")
 	Date updatedDate;
 
 	public int getAccount_Id() {
@@ -102,11 +101,5 @@ public class Account {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	
-	
 
-
-
-	
-	
 }
