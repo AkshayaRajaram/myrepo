@@ -8,33 +8,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
-
 @Entity
 public class CoverageType {
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int Id;
-	
+
 	@Column(name = "coverageType_Id")
 	String coverageType_Id;
 
-
-
-	@Column(name = "coverageType_Name")  
+	@Column(name = "coverageType_Name")
 	String coverageType_Name;
 
-
-	@Column(name = "createdBy")  
+	@Column(name = "createdBy")
 	String createdBy;
 
-	@Column(name = "createdDate")  
+	@Column(name = "createdDate")
 	Date createdDate;
 
-	@Column(name = "updatedBy")  
+	@Column(name = "updatedBy")
 	String updatedBy;
 
-	@Column(name = "updatedDate")  
+	@Column(name = "updatedDate")
 	Date updatedDate;
 
 	public int getId() {
@@ -92,8 +87,5 @@ public class CoverageType {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
-	
-	
 
 }

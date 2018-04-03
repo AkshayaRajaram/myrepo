@@ -12,41 +12,36 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-
 @Entity
-@Table(name="DOC_REV_STATUS")
+@Table(name = "DOC_REV_STATUS")
 public class DocRevStatus {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer doc_Rev_Status_Id;
-	
 
-	
 	@OneToOne
-	@JoinColumn(name="ACC_ID")
+	@JoinColumn(name = "ACC_ID")
 	private Account account;
-	
-	
+
 	@OneToOne
-	@JoinColumn(name="DOC_ID")
+	@JoinColumn(name = "DOC_ID")
 	private Document document;
-	
-	
+
 	@OneToOne
-	@JoinColumn(name="STATUS_ID")
+	@JoinColumn(name = "STATUS_ID")
 	private ValidationStatus validationstatus;
-	
-	@Column(name="CREATED_BY")
+
+	@Column(name = "CREATED_BY")
 	private String created_By;
-		
-	@Column(name="CREATED_DATE")
+
+	@Column(name = "CREATED_DATE")
 	private Date created_Date;
-	
-	@Column(name="UPDATED_BY")
+
+	@Column(name = "UPDATED_BY")
 	private String updated_By;
 
-	@Column(name="UPDATED_DATE")
+	@Column(name = "UPDATED_DATE")
 	private Date updated_Date;
 
 	public Integer getDoc_Rev_Status_Id() {
@@ -113,7 +108,4 @@ public class DocRevStatus {
 		this.updated_Date = updated_Date;
 	}
 
-	
-	
-	
 }

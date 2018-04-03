@@ -5,26 +5,26 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Validation_Status")
+@Table(name = "Validation_Status")
 public class ValidationStatus {
-	
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int status_Id;
 
-	@Column(name = "status") 
+	@Column(name = "status")
 	String status;
-	
-	@Column(name = "created_By")  
+
+	@Column(name = "created_By")
 	String createdBy;
 
-	@Column(name = "created_Date")  
+	@Column(name = "created_Date")
 	Date createdDate;
 
-	@Column(name = "updated_By")  
+	@Column(name = "updated_By")
 	String updatedBy;
 
-	@Column(name = "updated_Date")  
+	@Column(name = "updated_Date")
 	Date updatedDate;
 
 	public int getStatus_Id() {
@@ -73,8 +73,6 @@ public class ValidationStatus {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
-	} 
-	
-	
+	}
 
 }

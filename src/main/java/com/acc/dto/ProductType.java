@@ -10,25 +10,24 @@ import javax.persistence.Id;
 
 @Entity
 public class ProductType {
-	
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	int productType_Id; 
-	
-	
-	@Column(name = "productType_Name")  
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int productType_Id;
+
+	@Column(name = "productType_Name")
 	String productType_Name;
-	
-	@Column(name = "createdBy")  
+
+	@Column(name = "createdBy")
 	String createdBy;
 
-	@Column(name = "createdDate")  
+	@Column(name = "createdDate")
 	Date createdDate;
 
-	@Column(name = "updatedBy")  
+	@Column(name = "updatedBy")
 	String updatedBy;
 
-	@Column(name = "updatedDate")  
+	@Column(name = "updatedDate")
 	Date updatedDate;
 
 	public int getProductType_Id() {
@@ -78,6 +77,5 @@ public class ProductType {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	
 
 }

@@ -30,6 +30,8 @@ import com.google.gson.Gson;
 
 @Controller
 public class VirtualMainController {
+	
+	
 	@Autowired
 	VirtualService virtualservice;
 	static Logger log = Logger.getLogger(VirtualMainController.class.getName());
@@ -68,8 +70,6 @@ public class VirtualMainController {
 
 		List<UnderWriter> underWriterList = (List<UnderWriter>) session.getAttribute("underWriterList");
 		List<Account> accountList = (List<Account>) session.getAttribute("accountList");
-		System.out.println("----------------------------back----------------" + coverageType + productType
-				+ underWriterList + accountList);
 		String uList = "";
 		String aList = "";
 		uList = mapper.writeValueAsString(underWriterList);
@@ -77,8 +77,8 @@ public class VirtualMainController {
 
 		modelandview.addObject("uList", uList);
 		modelandview.addObject("aList", aList);
-		modelandview.addObject("coverageType", coverageType);
-		modelandview.addObject("underWriterId", underWriterId);
+		modelandview.addObject(CommonConstants.COVERAGE_TYPE, coverageType);
+		modelandview.addObject(CommonConstants.UNDER_WRITER_ID, underWriterId);
 		modelandview.addObject(CommonConstants.PRODUCT_TYPE, productType);
 
 		modelandview.setViewName("virtualMain");

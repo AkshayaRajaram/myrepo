@@ -11,26 +11,26 @@ import javax.persistence.Id;
 @Entity
 public class UnderWriter {
 
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	int underWriter_Id ;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int underWriter_Id;
 
-	@Column(name = "underWriter_Name")  
-	String  underWriter_Name;
-	
-	@Column(name="DIVISION")
+	@Column(name = "underWriter_Name")
+	String underWriter_Name;
+
+	@Column(name = "DIVISION")
 	String division;
-	
-	@Column(name = "createdBy")  
+
+	@Column(name = "createdBy")
 	String createdBy;
 
-	@Column(name = "createdDate")  
+	@Column(name = "createdDate")
 	Date createdDate;
 
-	@Column(name = "updatedBy")  
+	@Column(name = "updatedBy")
 	String updatedBy;
 
-	@Column(name = "updatedDate")  
+	@Column(name = "updatedDate")
 	Date updatedDate;
 
 	public int getUnderWriter_Id() {
