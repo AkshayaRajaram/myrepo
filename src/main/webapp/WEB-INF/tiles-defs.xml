@@ -25,7 +25,7 @@
                  <definition name="accountInfo" extends="baseLayout">
                                 <put-attribute name="title" value="account Info" />
                                 <put-attribute name="body"
-                                                value="/WEB-INF/jsp/account.jsp" />
+                                                value="/WEB-INF/jsp/accountInfo.jsp" />
                                                 
                 </definition>
                 

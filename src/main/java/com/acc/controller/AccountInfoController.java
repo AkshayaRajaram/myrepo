@@ -62,7 +62,7 @@ public class AccountInfoController {
 		modelandview.addObject(CommonConstants.DOC_LIST, DocList);
 		modelandview.addObject(CommonConstants.ACCOUNT_LIST, accountList2);
 		modelandview.addObject(CommonConstants.REVIEWER_LIST, reviewerList);
-		modelandview.setViewName("account");
+		modelandview.setViewName("accountInfo");
 
 		return modelandview;
 	}
