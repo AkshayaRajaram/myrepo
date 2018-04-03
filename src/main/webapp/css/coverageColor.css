@@ -1,0 +1,32 @@
+@charset "ISO-8859-1";
+
+input[type="radio"] {
+  /* remove standard background appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* create custom radiobutton appearance */
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  padding: 6px;
+  /* background-color only for content */
+  background-clip: content-box;
+  border: 2px solid #bbbbbb;
+  background-color: #e7e6e7;
+  border-radius: 50%;
+}
+
+/* appearance for checked radiobutton */
+input[id="op1"]:checked {
+  background-color: #8B4513;
+}
+input[id="op2"]:checked {
+  background-color: #BDB76B;
+}
+input[id="op3"]:checked {
+  background-color: #FFD700;
+}
+input[id="op4"]:checked {
+  background-color: #CD853F;
+}
