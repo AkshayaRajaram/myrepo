@@ -60,7 +60,7 @@
 <!-- 			<div class="col-sm-3 sidenav"> -->
 <%-- 				<tiles:insertAttribute name="menu" /> --%>
 <!-- 			</div> -->
-			<div class="col-sm-9">
+			<div class="col-md-12">
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
