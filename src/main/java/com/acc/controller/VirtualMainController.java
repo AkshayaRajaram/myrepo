@@ -4,23 +4,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.acc.constants.CommonConstants;
 import com.acc.dto.Account;
-import com.acc.dto.Document;
 import com.acc.dto.UnderWriter;
 import com.acc.exceptions.VirtualMainException;
 import com.acc.service.VirtualService;
@@ -30,149 +24,149 @@ import com.google.gson.Gson;
 
 @Controller
 public class VirtualMainController {
-	
-	
 	@Autowired
 	VirtualService virtualservice;
 	static Logger log = Logger.getLogger(VirtualMainController.class.getName());
-/***
- * 
- * @param request
- * @param response
- * @return
- */
-	@RequestMapping("virtualMain.htm")
+	
+	/**
+	 * Returns Home Page Model and View object
+	 *  
+	 * @param request
+	 * @param response
+	 * @return ModelandView
+	 */
+	@RequestMapping(CommonConstants.VIRTUAL_MAIN_HTM)
 	public ModelAndView load(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelandview = new ModelAndView();
-		modelandview.setViewName("virtualMain");
+		modelandview.setViewName(CommonConstants.VIRTUAL_MAIN);
 		return modelandview;
 	}
-
-	/***
+	
+	/**
+	 * Returns Model and View Object which contains
+	 * UnderWriter List,
+	 * Account List,
+	 * CoverageType,
+	 * UnderWriterId,
+	 * ProductType
+	 * 
+	 * Stores the Session values in the model and view object
 	 * 
 	 * @param request
 	 * @param response
-	 * @return
+	 * @return ModelandView
 	 * @throws VirtualMainException
 	 * @throws JsonProcessingException
 	 */
-	@RequestMapping("virtualMainBack.htm")
+	@RequestMapping(CommonConstants.VIRTUAL_MAIN_BACK_HTM)
 	public ModelAndView load_back(HttpServletRequest request, HttpServletResponse response)
 			throws VirtualMainException, JsonProcessingException {
 		ModelAndView modelandview = new ModelAndView();
 		ObjectMapper mapper = new ObjectMapper();
 		HttpSession session = request.getSession();
-
-		System.out.println("ssss" + session);
-		String coverageType = (String) session.getAttribute("coverageType");
-		String productType = (String) session.getAttribute("productType");
-		String underWriterId = (String) session.getAttribute("id");
-
-		List<UnderWriter> underWriterList = (List<UnderWriter>) session.getAttribute("underWriterList");
-		List<Account> accountList = (List<Account>) session.getAttribute("accountList");
+		String coverageType = (String) session.getAttribute(CommonConstants.COVERAGE_TYPE);
+		String productType = (String) session.getAttribute(CommonConstants.PRODUCT_TYPE);
+		String underWriterId = (String) session.getAttribute(CommonConstants.ID);
+		List<UnderWriter> underWriterList = (List<UnderWriter>) session.getAttribute(CommonConstants.UNDER_WRITER_LIST);
+		List<Account> accountList = (List<Account>) session.getAttribute(CommonConstants.ACCOUNT_LIST);
 		String uList = "";
 		String aList = "";
 		uList = mapper.writeValueAsString(underWriterList);
 		aList = mapper.writeValueAsString(accountList);
-
-		modelandview.addObject("uList", uList);
-		modelandview.addObject("aList", aList);
+		modelandview.addObject(CommonConstants.U_LIST, uList);
+		modelandview.addObject(CommonConstants.A_LIST, aList);
 		modelandview.addObject(CommonConstants.COVERAGE_TYPE, coverageType);
 		modelandview.addObject(CommonConstants.UNDER_WRITER_ID, underWriterId);
 		modelandview.addObject(CommonConstants.PRODUCT_TYPE, productType);
-
-		modelandview.setViewName("virtualMain");
+		modelandview.setViewName(CommonConstants.VIRTUAL_MAIN);
 		return modelandview;
 	}
-/***
- * 
- * @param request
- * @param response
- * @throws IOException
- * @throws VirtualMainException
- */
-	@RequestMapping("getUnderWriter.htm")
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * @throws VirtualMainException
+	 */
+	@RequestMapping(CommonConstants.GET_UNDER_WRITER_HTM)
 	public void getUnderWriter(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, VirtualMainException
-
+	
 	{
 		HttpSession session = request.getSession();
-		String coverageType = request.getParameter("coverageType");
-		String productType = request.getParameter("productType");
+		String coverageType = request.getParameter(CommonConstants.COVERAGE_TYPE);
+		String productType = request.getParameter(CommonConstants.PRODUCT_TYPE);
 		try {
 			List<UnderWriter> sendUnderWriterList = virtualservice.getUnderWriterList(productType);
-
 			Gson gson = new Gson();
-
-			response.setContentType("application/json");
-
+			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
-
 			out.println(gson.toJson(sendUnderWriterList));
-
 			if (sendUnderWriterList.size() > 0) {
-				session.setAttribute("underWriterList", sendUnderWriterList);
-				session.setAttribute("coverageType", coverageType);
-				session.setAttribute("productType", productType);
+				session.setAttribute(CommonConstants.UNDER_WRITER_LIST, sendUnderWriterList);
+				session.setAttribute(CommonConstants.COVERAGE_TYPE, coverageType);
+				session.setAttribute(CommonConstants.PRODUCT_TYPE, productType);
 			}
 		} catch (VirtualMainException e) {
-			// TODO Auto-generated catch block
-
-			System.out.println("msg" + e.getMessage());
-
 			response.setStatus(400);
 			response.getWriter().write(e.getMessage());
 		}
-
 	}
-
-	@RequestMapping("getAccountList.htm")
-
+	
+	/**
+	 * 
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * @throws VirtualMainException
+	 */
+	@RequestMapping(CommonConstants.GET_ACCOUNT_LIST_HTM)
 	public void getAccountList(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, VirtualMainException
-
-	{
+			throws IOException, VirtualMainException {
 		HttpSession session = request.getSession();
-		int underWriterId = Integer.parseInt(request.getParameter("id"));
-		String id = request.getParameter("id");
+		int underWriterId = Integer.parseInt(request.getParameter(CommonConstants.ID));
+		String id = request.getParameter(CommonConstants.ID);
 		try {
 			ArrayList<Account> accountList = (ArrayList<Account>) virtualservice.getAccountList(underWriterId);
-
 			Gson gson = new Gson();
-
-			response.setContentType("application/json");
-
+			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
-
 			out.println(gson.toJson(accountList));
 			if (accountList.size() > 0) {
-				session.setAttribute("accountList", accountList);
-				session.setAttribute("underWriterId", id);
+				session.setAttribute(CommonConstants.ACCOUNT_LIST, accountList);
+				session.setAttribute(CommonConstants.UNDER_WRITER_ID, id);
 			}
 		} catch (VirtualMainException e) {
-			// TODO Auto-generated catch block
-
-			System.out.println("msg" + e.getMessage());
-
 			response.setStatus(400);
 			response.getWriter().write(e.getMessage());
 		}
-
+		
 	}
-
+	
+	/**
+	 * Returns ModelandView Object
+	 * - Exception
+	 * - Url
+	 * to VirtualException class
+	 * 
+	 * @param req
+	 * @param ex
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@ExceptionHandler(VirtualMainException.class)
 	public ModelAndView errorHandling(HttpServletRequest req, Exception ex, HttpServletResponse response)
 			throws IOException {
-
 		ModelAndView modelandview = new ModelAndView();
 		log.error("Request" + req.getRequestURL() + "raised" + ex);
-		modelandview.addObject("exception" + ex);
-
-		modelandview.addObject("url", req.getRequestURL());
-		modelandview.setViewName("error.jsp");
-
+		modelandview.addObject(CommonConstants.EXCEPTION + ex);
+		modelandview.addObject(CommonConstants.URL, req.getRequestURL());
+		modelandview.setViewName(CommonConstants.ERROR_JSP);
 		return modelandview;
-
+		
 	}
 }
