@@ -16,120 +16,287 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/buttonDisable.js"></script>
 <script type="text/javascript">
-	function showAlert() {
-		alert("Submitted Successfully");
-	}
+    function showAlert() {
+        alert("Submitted Successfully");
+    }
 </script>
-<script type="text/javascript">
-	$(".link").click(function(e) {
-		e.preventDefault();
-		$('.content-container div').fadeOut('slow');
-		$('#' + $(this).data('rel')).fadeIn('slow');
-	});
+
+<script>
+$(document).ready(function(){
+     $(".eg").hide();
+    
+    $(".docslistanchor").click(function(){
+        var idname=$(this).data('divid');
+        $(".eg").hide();
+        $(idname).show();
+    });
+    
+});
+
+
 </script>
+<script>
+$(document).ready(function(){
+    $('.targetdiv').hide();
+        $("a").click(function(){
+                    $('.targetdiv').hide();
+                    $("#div"+$(this).attr("target")).show();
+                });
+            
+            
+    
+});
+</script>
+
+
+<style>
+td {
+	spacing: 5px;
+	padding: 1px;
+}
+
+.tableaccount {
+	font-family: Verdana;
+	font-size: 14px;
+}
+
+.tableaccount1 {
+	font-family: Times New Roman;
+	font-size: 16px;
+}
+</style>
 </head>
 <body>
-	<div class="jumbotron" style="background-color: #E5E8E8">
-		<h3 class="display-2">Account Information</h3>
-		<c:forEach items="${accountList}" var="account" varStatus="loop">
-      		Account ID:<c:out value="${account.account_Id }"></c:out>
-			<br>	Account Name:<c:out value="${account.name}" />
-			<br>	Account Number:<c:out value="${account.account_Number}" />
-			<br>	Account Division:<c:out value="${account.division}" />
-		</c:forEach>
-	</div>
-	<div class="container col-md-12 ">
+
+	<div class="container-fluid">
 		<div class="row">
-			<div id="proposalAccordion" class="panel-group">
-				<div class="panel panel-default col-md-8">
-					<div class="panel-heading">Document Info</div>
-					<div class="panel-body">
-						<table class="table table-condensed table-striped">
-							<thead>
-								<tr>
-									<th>Document Name</th>
-									<th>Status</th>
-								</tr>
-							</thead>
-							<tbody id="myTable">
-								<c:forEach var="doc" items="${DocList}" varStatus="status"
-									step="1" begin="0">
-									<tr>
-										<td class="col-md-3"><a class="link"
-											data-toggle="collapse" data-parent="#proposalAccordion"
-											href="#col${status.index}" data-rel="col${status.index}">${doc.docname}</a>
-										<td class="col-md-1"><select class="form-control"
-											id="sel1">
-												<option value="Select">Select</option>
-												<option value="Missing">Missing</option>
-												<option value="Incorrect">Incorrect</option>
-												<option value="Impossible">Impossible</option>
-										</select></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!-- Div for error -->
-				<div class="panel panel-default col-md-4">
-					<div class="panel-heading">Error</div>
-					<div class="panel-body"
-						style="height: 350px; overflow-y: auto; width: 100%;">
-						<div class="content-container">
-							<c:forEach var="cnt" varStatus="status" items="${DocList}"
-								step="1" begin="0">
-								<div id="col${status.index}" class="panel-collapse collapse">
-									<div class="panel-body">
-										The Document ${cnt.docname} contains errors in it.
-										<p class="bg-danger">Status is ${cnt.sts}</p>
-									</div>
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="jumbotron jumbotron-fluid">
+						<div class="row">
+							<p class=" text-center text-info">ACCOUNT INFORMATION</p>
+							<c:forEach items="${accountList}" var="account" varStatus="loop">
+								<div class="col-lg-3">
+									<table align="left">
+										<tbody>
+											<tr>
+												<td class="tableaccount text-info "><Strong>Account
+														Number</Strong></td>
+												<td class="tableaccount1"><c:out
+														value="${account.account_Number}" /></td>
+											</tr>
+											<tr>
+												<td class="tableaccount text-info"><Strong>Account
+														Name</Strong></td>
+												<td class="tableaccount1"><c:out
+														value="${account.name}" /></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+								<div class="col-lg-3">
+									<table align="center">
+										<tbody>
+
+											<tr>
+												<td class="tableaccount text-info"><Strong>Account
+														Division</Strong></td>
+												<td class="tableaccount1"><c:out
+														value="${account.division}" /></td>
+											</tr>
+											<tr>
+												<td class="tableaccount text-info"><Strong>Created
+														By</Strong></td>
+												<td class="tableaccount1"><c:out
+														value="${account.createdBy}" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-lg-3">
+									<table align="right">
+										<tbody>
+
+											<tr>
+												<td class="tableaccount text-info"><Strong>Created
+														Date</Strong></td>
+												<td class="tableaccount1"><c:out
+														value="${account.createdDate}" /></td>
+											</tr>
+											<tr>
+												<td class="tableaccount text-info"><Strong>Updated
+														By</Strong></td>
+												<td class="tableaccount1"><c:out
+														value="${account.updatedBy}" /></td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
 							</c:forEach>
+
+						</div>
+						<!-- for account information -->
+						<hr />
+						<div class="row">
+							<p class="text-center text-info">ACCOUNT SETUP</p>
+							Yet to develop
+						</div>
+						<!--row for account setup  -->
+						<hr />
+
+
+
+
+
+
+
+					</div>
+					<!--jumbotron  -->
+
+				</div>
+				<!-- row -->
+
+
+
+				<div class="row">
+					<div class="col-md-8">
+						<div class="panel panel-primary borderless">
+<!-- 							<div class="panel-heading">Documents Information</div>
+ -->							<div class="panel-body">
+
+
+								<table class="table table-condensed table-striped">
+									<thead>
+										<tr>
+											<th>Document Name</th>
+											<th>File Name</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody id="myTable">
+										<c:forEach var="doc" items="${DocList}" varStatus="status"
+											step="1" begin="0">
+											<tr>
+												<td class="col-md-3"><a target="${status.index }">${doc.docname}</a>
+												<td class="col-md-3">${doc.filename}</td>
+												<td class="col-md-1"><select
+													class="form-control input-sm" id="sel1">
+														<option value="Select">Select</option>
+														<option value="Missing">Missing</option>
+														<option value="Incorrect">Incorrect</option>
+														<option value="Impossible">Impossible</option>
+												</select></td>
+
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+
+
+<!--     <div class="container col-md-8"> -->
+		<div class="panel borderless">
+			<div class="panel-body">
+				<form>
+					<div class="form-group">
+						<label class="col-md-2" for="Comments">Comments</label>
+						<textarea class="form-control" id="Comments" rows="3"
+							placeholder="Enter Your Comments here..."></textarea>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2" for="sel1">Reviewer</label>
+
+						<div class="col-md-2">
+							<select class="form-control input-sm" id="sel1">
+								<c:forEach var="line1" items="${reviewerList}">
+									<option><c:out value="${line1}" /></option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
-				</div>
-				<!-- End Div for error -->
+					<br /> <br />
+					<div class="form-group">
+						<label class="col-md-2" for="optradio">Status</label> <label
+							class="radio-inline"> <input type="radio" name="optradio">Approved
+						</label> <label class="radio-inline"> <input type="radio"
+							name="optradio">Not Approved
+						</label> <label class="radio-inline"> <input type="radio"
+							name="optradio">Other Options
+						</label>
+					</div>
+					<br /> <br />
+					<button type="button" class="btn btn-basic col-md-1" value="submit"
+						onclick="showAlert()">Submit</button>
+					<button type="submit" class="btn btn-default col-md-1"
+						formaction="virtualMainBack.htm">Back</button>
+				</form>
+				<!--     </div> -->
+
+
 			</div>
+			<!--panel body  -->
 		</div>
-	</div>
+		<!--panel end  -->
 
-	<div class="container col-md-8">
-		<form>
-			<div class="form-group">
-				<label class="col-md-2" for="Comments">Comments</label>
-				<textarea class="form-control" id="Comments" rows="3"
-					placeholder="Enter Your Comments here..."></textarea>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2" for="sel1">Reviewer</label>
 
-				<div class="col-md-3">
-					<select class="form-control" id="sel1">
-						<c:forEach var="line1" items="${reviewerList}">
-							<option><c:out value="${line1}" /></option>
+
+
+
+
+
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						</div><!-- panel body -->
+					</div>
+					<!-- panel end -->
+					<div class="col-md-4">
+						<c:forEach var="cnt" varStatus="status" items="${DocList}"
+							step="1" begin="0">
+							<div id="div${status.index}" class="targetdiv">
+								<div class="panel panel-danger">
+									<div class="panel-heading">Error Status of the Documents</div>
+									<div class="panel-body">
+										The Document
+										<mark>${cnt.docname} </mark>
+										contains errors in it. Status is
+										<mark> ${cnt.sts}</mark>
+									<p>	Missing- Files Missings
+										Incomplete - Incompete data
+										Incorrect - Incorrect data
+										</p>
+									</div>
+								</div>
+							</div>
 						</c:forEach>
-					</select>
-				</div>
-			</div>
-			<br /> <br />
-			<div class="form-group">
-				<label class="col-md-2" for="optradio">Status</label> <label
-					class="radio-inline"> <input type="radio" name="optradio">Approved
-				</label> <label class="radio-inline"> <input type="radio"
-					name="optradio">Not Approved
-				</label> <label class="radio-inline"> <input type="radio"
-					name="optradio">Other Options
-				</label>
-			</div>
-			<br /> <br />
-			<button type="button" class="btn btn-basic col-md-2" value="submit"
-				onclick="showAlert()">Submit</button>
-			<button type="submit" class="btn btn-default col-md-2"
-				formaction="virtualMainBack.htm">Back</button>
-		</form>
-	</div>
 
+					</div>
+
+
+				</div>
+				<!-- row Error div -->
+			</div>
+			<!-- Container fluid -->
+		</div>
+
+
+		
+
+	</div>
 
 
 </body>
