@@ -3,8 +3,9 @@
 div.classtitle {
 	border: 1px solid darkblue;
 	border-radius: 8px;
-	width: 134.5%;
-} 
+	/* width: 134.5%; */
+}
+
 td {
 	border: 1px solid black;
 }
