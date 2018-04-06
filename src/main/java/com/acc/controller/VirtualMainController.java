@@ -57,7 +57,7 @@ public class VirtualMainController {
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping(CommonConstants.VIRTUAL_MAIN_BACK_HTM)
-	public ModelAndView load_back(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView loadBack(HttpServletRequest request, HttpServletResponse response)
 			throws VirtualMainException, JsonProcessingException {
 		ModelAndView modelandview = new ModelAndView();
 		ObjectMapper mapper = new ObjectMapper();

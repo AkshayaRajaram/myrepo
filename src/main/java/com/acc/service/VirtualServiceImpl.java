@@ -14,13 +14,13 @@ import com.acc.exceptions.VirtualMainException;
 
 @Service
 public class VirtualServiceImpl implements VirtualService {
-	
+
 	@Autowired
 	VirtualMainDaoI virtualmaindao;
-	
+
 	/**
-	 * Adds the UnderWriter information to a list based on productType
-	 * Returns Underwriter list
+	 * Adds the UnderWriter information to a list based on productType Returns
+	 * Underwriter list
 	 * 
 	 * @return underwriter list
 	 * @param productType
@@ -36,23 +36,12 @@ public class VirtualServiceImpl implements VirtualService {
 				UnderWriterList.add(uw_map.getUnderWriter());
 			}
 		}
-	
-		
-		/*UW_Mapping.forEach(uw -> 
-		{
-			if(uw.getProductType().getProductType_Name().equals(productType))
-				UnderWriterList.add(uw.getUnderWriter());
-		});
-		*/
-		
-		
 		return UnderWriterList;
 	}
-	
-		
+
 	/**
-	 * Adds the Account information to a list based on UnderWriter Id
-	 * Returns Account list
+	 * Adds the Account information to a list based on UnderWriter Id Returns
+	 * Account list
 	 * 
 	 * @return account list
 	 * @param underWriterId
@@ -68,17 +57,6 @@ public class VirtualServiceImpl implements VirtualService {
 				accountList.add(map.getAccount());
 			}
 		}
-		
-		/*UW_Account_Mapping.forEach(
-				uwam -> {
-					if(uwam.getUnderWriter().getUnderWriter_Id()).equals(UW_Account_Mapping))
-							accountList.add(uwam.getAccount());
-				}
-				
-				
-				);
-		
-		*/
 		return accountList;
 	}
 }
