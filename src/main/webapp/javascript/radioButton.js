@@ -3,7 +3,7 @@
  */
 
 
-       window.onload = function() {
+      /* window.onload = function() {
 
     	  	 $("input.plan").prop("disabled", true);
 
@@ -125,3 +125,4 @@
  
 
        }
+*/

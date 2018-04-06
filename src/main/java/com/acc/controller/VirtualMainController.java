@@ -24,13 +24,14 @@ import com.google.gson.Gson;
 
 @Controller
 public class VirtualMainController {
+
 	@Autowired
 	VirtualService virtualservice;
 	static Logger log = Logger.getLogger(VirtualMainController.class.getName());
-	
+
 	/**
 	 * Returns Home Page Model and View object
-	 *  
+	 * 
 	 * @param request
 	 * @param response
 	 * @return ModelandView
@@ -39,16 +40,13 @@ public class VirtualMainController {
 	public ModelAndView load(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelandview = new ModelAndView();
 		modelandview.setViewName(CommonConstants.VIRTUAL_MAIN);
+		modelandview.addObject(CommonConstants.ISBACK, false);
 		return modelandview;
 	}
-	
+
 	/**
-	 * Returns Model and View Object which contains
-	 * UnderWriter List,
-	 * Account List,
-	 * CoverageType,
-	 * UnderWriterId,
-	 * ProductType
+	 * Returns Model and View Object which contains UnderWriter List, Account List,
+	 * CoverageType, UnderWriterId, ProductType
 	 * 
 	 * Stores the Session values in the model and view object
 	 * 
@@ -79,9 +77,10 @@ public class VirtualMainController {
 		modelandview.addObject(CommonConstants.UNDER_WRITER_ID, underWriterId);
 		modelandview.addObject(CommonConstants.PRODUCT_TYPE, productType);
 		modelandview.setViewName(CommonConstants.VIRTUAL_MAIN);
+		modelandview.addObject(CommonConstants.ISBACK, true);
 		return modelandview;
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -93,7 +92,7 @@ public class VirtualMainController {
 	@RequestMapping(CommonConstants.GET_UNDER_WRITER_HTM)
 	public void getUnderWriter(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, VirtualMainException
-	
+
 	{
 		HttpSession session = request.getSession();
 		String coverageType = request.getParameter(CommonConstants.COVERAGE_TYPE);
@@ -104,7 +103,7 @@ public class VirtualMainController {
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
 			out.println(gson.toJson(sendUnderWriterList));
-			if(!(sendUnderWriterList.isEmpty()||sendUnderWriterList.contains(null)||sendUnderWriterList==null)) {
+			if (sendUnderWriterList.size() > 0) {
 				session.setAttribute(CommonConstants.UNDER_WRITER_LIST, sendUnderWriterList);
 				session.setAttribute(CommonConstants.COVERAGE_TYPE, coverageType);
 				session.setAttribute(CommonConstants.PRODUCT_TYPE, productType);
@@ -114,7 +113,7 @@ public class VirtualMainController {
 			response.getWriter().write(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -135,23 +134,19 @@ public class VirtualMainController {
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
 			out.println(gson.toJson(accountList));
-			
-		if(!(accountList.isEmpty()||accountList.contains(null)||accountList==null)){
-			session.setAttribute(CommonConstants.ACCOUNT_LIST, accountList);
+			if (accountList.size() > 0) {
+				session.setAttribute(CommonConstants.ACCOUNT_LIST, accountList);
 				session.setAttribute(CommonConstants.UNDER_WRITER_ID, id);
 			}
 		} catch (VirtualMainException e) {
 			response.setStatus(400);
 			response.getWriter().write(e.getMessage());
 		}
-		
+
 	}
-	
+
 	/**
-	 * Returns ModelandView Object
-	 * - Exception
-	 * - Url
-	 * to VirtualException class
+	 * Returns ModelandView Object - Exception - Url to VirtualException class
 	 * 
 	 * @param req
 	 * @param ex
@@ -168,6 +163,6 @@ public class VirtualMainController {
 		modelandview.addObject(CommonConstants.URL, req.getRequestURL());
 		modelandview.setViewName(CommonConstants.ERROR_JSP);
 		return modelandview;
-		
+
 	}
 }

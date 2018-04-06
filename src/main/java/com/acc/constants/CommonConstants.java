@@ -43,9 +43,9 @@ public class CommonConstants {
 	public static final String INCORRECT = "Incorrect";
 	public static final String MISSING = "Missing";
 	public static final String INCOMPLETE = "Incomplete";
-	
 	public static final String ACCID2 = "accid";
 	public static final String FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID = "from Account a WHERE a.account_Id = :accid";
 	public static final String FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID = "from DocRevStatus d where d.account.account_Id =:accid";
+	public static final String ISBACK = "isback";
 
 }
