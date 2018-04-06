@@ -1,15 +1,12 @@
 package com.acc.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.acc.constants.CommonConstants;
-import com.acc.constants.DocStatus;
 import com.acc.dao.AccountInfoDao;
 import com.acc.dto.Account;
 import com.acc.dto.DocRevStatus;
@@ -45,8 +42,8 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 	 * @throws VirtualMainException
 	 */
 	@Transactional(readOnly = true)
-	public List<Account> listAllAccount() throws VirtualMainException {
-		List<Account> accountList = accountinfodao.listAllAccount();
+	public List<Account> listAllAccount(Integer accid) throws VirtualMainException {
+		List<Account> accountList = accountinfodao.listAllAccount(accid);
 		return accountList;
 		
 	}
@@ -63,50 +60,8 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 	 * @throws VirtualMainException
 	 */
 	@Transactional(readOnly = true)
-	public List<DocStatus> listDocRevsts(Integer accid) throws VirtualMainException {
-		List<DocRevStatus> docrevsts = accountinfodao.listAccDocStatus();
-		List<DocRevStatus> docrevsts1 = new ArrayList<DocRevStatus>();
-		for (DocRevStatus drs : docrevsts) {
-			if (drs.getAccount().getAccount_Id() == accid) {
-				docrevsts1.add(drs);
-			}
-		}
-		List<DocStatus> docsts = new ArrayList<DocStatus>();
-		for (DocRevStatus temp : docrevsts1) {
-			DocStatus dc = new DocStatus();
-			Map<String, Boolean> map = new HashMap<String, Boolean>();
-			String sts;
-			if (temp.getValidationstatus().getStatus_Id() == 2) {
-				sts = temp.getValidationstatus().getStatus();
-				dc.setDocid(temp.getDocument().getDoc_Id());
-				dc.setDocname(temp.getDocument().getDoc_Name());
-				dc.setFilename(temp.getDocument().getFile_Name());
-				map.put(sts, true);
-				dc.setStatus(map);
-				dc.setSts(CommonConstants.INCOMPLETE);
-				docsts.add(dc);
-				
-			} else if (temp.getValidationstatus().getStatus_Id() == 3) {
-				sts = temp.getValidationstatus().getStatus();
-				dc.setDocid(temp.getDocument().getDoc_Id());
-				dc.setDocname(temp.getDocument().getDoc_Name());
-				dc.setFilename(temp.getDocument().getFile_Name());
-				map.put(sts, true);
-				dc.setStatus(map);
-				dc.setSts(CommonConstants.MISSING);
-				docsts.add(dc);
-				
-			} else if (temp.getValidationstatus().getStatus_Id() == 4) {
-				sts = temp.getValidationstatus().getStatus();
-				dc.setDocid(temp.getDocument().getDoc_Id());
-				dc.setDocname(temp.getDocument().getDoc_Name());
-				dc.setFilename(temp.getDocument().getFile_Name());
-				map.put(sts, true);
-				dc.setStatus(map);
-				dc.setSts(CommonConstants.INCORRECT);
-				docsts.add(dc);
-			}
-		}
-		return docsts;
+	public List<DocRevStatus> listDocRevsts(Integer accid) throws VirtualMainException {
+		List<DocRevStatus> docrevsts = accountinfodao.listAccDocStatus(accid);
+		return docrevsts;
 	}
 }

@@ -104,7 +104,7 @@ public class VirtualMainController {
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
 			out.println(gson.toJson(sendUnderWriterList));
-			if (sendUnderWriterList.size() > 0) {
+			if(!(sendUnderWriterList.isEmpty()||sendUnderWriterList.contains(null)||sendUnderWriterList==null)) {
 				session.setAttribute(CommonConstants.UNDER_WRITER_LIST, sendUnderWriterList);
 				session.setAttribute(CommonConstants.COVERAGE_TYPE, coverageType);
 				session.setAttribute(CommonConstants.PRODUCT_TYPE, productType);
@@ -135,8 +135,9 @@ public class VirtualMainController {
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
 			out.println(gson.toJson(accountList));
-			if (accountList.size() > 0) {
-				session.setAttribute(CommonConstants.ACCOUNT_LIST, accountList);
+			
+		if(!(accountList.isEmpty()||accountList.contains(null)||accountList==null)){
+			session.setAttribute(CommonConstants.ACCOUNT_LIST, accountList);
 				session.setAttribute(CommonConstants.UNDER_WRITER_ID, id);
 			}
 		} catch (VirtualMainException e) {

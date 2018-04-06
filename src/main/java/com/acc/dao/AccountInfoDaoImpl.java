@@ -11,31 +11,40 @@ import com.acc.exceptions.VirtualMainException;
 
 @Repository
 public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
+
 	
-	/*
-	 * Returns Account Details from database using Session Factory Object
+
+	
+	/**
+	 * Returns Account Details from database using Session Factory Object for the provided accid
 	 * 
-	 * @return list of account
+	 * @Param accid 
+	 *@return list of account
+	 * 
 	 * @throws VirtualMainException
 	 */
-	
-	public List<Account> listAllAccount() throws VirtualMainException {
+
+	public List<Account> listAllAccount(Integer accid) throws VirtualMainException {
 		Session session = getSession();
-		Query query = session.createQuery(CommonConstants.FROM_ACCOUNT);
+		Query query = session.createQuery(CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
+		query.setParameter(CommonConstants.ACCID2, accid);
 		return query.list();
 	}
-	
-	/*
-	 * Returns Document status information from database using Session Factory Object
+
+	/**
+	 * Returns Document status information from database using Session Factory for the provided accid
+	 * Object
 	 * 
+	 * @Param accid
 	 * @return list of document status information
 	 * @throws VirtualMainException
 	 */
-	
-	public List<DocRevStatus> listAccDocStatus() throws VirtualMainException {
+
+	public List<DocRevStatus> listAccDocStatus(Integer accid) throws VirtualMainException {
 		Session session = getSession();
-		Query query = session.createQuery(CommonConstants.FROM_DOC_REV_STATUS);
+		Query query = session.createQuery(CommonConstants.FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID);
+		query.setParameter(CommonConstants.ACCID2, accid);
 		return query.list();
 	}
-	
+
 }
