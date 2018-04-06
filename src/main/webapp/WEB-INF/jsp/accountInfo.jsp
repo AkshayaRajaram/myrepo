@@ -179,11 +179,11 @@ td {
 										<c:forEach var="doc" items="${DocList}" varStatus="status"
 											step="1" begin="0">
 											<tr>
-												<td class="col-md-3"><a target="${status.index }">${doc.docname}</a>
-												<td class="col-md-3">${doc.filename}</td>
+												<td class="col-md-3"><a target="${status.index }">${doc.document.doc_Name}</a>
+												<td class="col-md-3">${doc.document.file_Name}</td>
 												<td class="col-md-1"><select
 													class="form-control input-sm" id="sel1">
-														<option value="Select">Select</option>
+													<option value="Select">Select</option>
 														<option value="Missing">Missing</option>
 														<option value="Incorrect">Incorrect</option>
 														<option value="Impossible">Impossible</option>
@@ -222,7 +222,7 @@ td {
 						</label> <label class="radio-inline"> <input type="radio"
 							name="optradio">Not Approved
 						</label> <label class="radio-inline"> <input type="radio"
-							name="optradio">Other Options
+							name="optradio" checked="">Other Options
 						</label>
 					</div>
 					<br /> <br />
@@ -272,9 +272,9 @@ td {
 									<div class="panel-heading">Error Status of the Documents</div>
 									<div class="panel-body">
 										The Document
-										<mark>${cnt.docname} </mark>
+										<mark>${cnt.document.doc_Name} </mark>
 										contains errors in it. Status is
-										<mark> ${cnt.sts}</mark>
+										<mark> ${cnt.validationstatus.status}</mark>
 									<p>	Missing- Files Missings
 										Incomplete - Incompete data
 										Incorrect - Incorrect data

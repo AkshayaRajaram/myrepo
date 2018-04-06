@@ -1,7 +1,6 @@
 package com.acc.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.acc.constants.CommonConstants;
-import com.acc.constants.DocStatus;
 import com.acc.dto.Account;
+import com.acc.dto.DocRevStatus;
 import com.acc.exceptions.VirtualMainException;
 import com.acc.service.AccountInfoService;
 
@@ -37,19 +36,13 @@ public class AccountInfoController {
 	public ModelAndView accountinfo(HttpServletRequest request, @RequestParam(CommonConstants.ID2) String id)
 			throws VirtualMainException {
 		ModelAndView modelandview = new ModelAndView();
-		List<Account> accountList;
-		accountList = accountInfoService.listAllAccount();
-		List<Account> accountList2 = new ArrayList<Account>();
-		for (Account var : accountList) {
-			if (var.getAccount_Id() == Integer.valueOf(id)) {
-				accountList2.add(var);
-			}
-		}
-		Integer var = Integer.valueOf(id);
-		List<DocStatus> DocList = accountInfoService.listDocRevsts(var);
+		Integer accid;
+		accid = id.isEmpty()?null:id==null?null:Integer.parseInt(id);
+		List<Account> accountList=accountInfoService.listAllAccount(accid);
+		List<DocRevStatus> DocList = accountInfoService.listDocRevsts(accid);
 		List<String> reviewerList = accountInfoService.listAllReviewer();
-		modelandview.addObject(CommonConstants.DOC_LIST, DocList);
-		modelandview.addObject(CommonConstants.ACCOUNT_LIST, accountList2);
+		modelandview.addObject(CommonConstants.DOC_LIST, (DocList.isEmpty()||(DocList==null)?null:DocList.contains(null)?DocList.remove(null):DocList));
+		modelandview.addObject(CommonConstants.ACCOUNT_LIST, (accountList.isEmpty()||(accountList==null)?null:accountList.contains(null)?accountList.remove(null):accountList));
 		modelandview.addObject(CommonConstants.REVIEWER_LIST, reviewerList);
 		modelandview.setViewName(CommonConstants.ACCOUNT_INFO);
 		return modelandview;
