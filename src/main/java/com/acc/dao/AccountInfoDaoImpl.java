@@ -1,6 +1,8 @@
 package com.acc.dao;
 
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -13,7 +15,7 @@ import com.acc.exceptions.VirtualMainException;
 public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 
 	
-
+	static Logger log = Logger.getLogger(AccountInfoDaoImpl.class.getName());
 	
 	/**
 	 * Returns Account Details from database using Session Factory Object for the provided accid
@@ -26,8 +28,10 @@ public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 
 	public List<Account> listAllAccount(Integer accid) throws VirtualMainException {
 		Session session = getSession();
+		//Session session=null;
 		Query query = session.createQuery(CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
 		query.setParameter(CommonConstants.ACCID2, accid);
+		log.info("Database Connected.."+" "+"Data Fetched successfully from Account table"+""+CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
 		return query.list();
 	}
 
@@ -44,6 +48,7 @@ public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 		Session session = getSession();
 		Query query = session.createQuery(CommonConstants.FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID);
 		query.setParameter(CommonConstants.ACCID2, accid);
+		log.info("Database Connected.."+" "+"Data Fetched successfully from DocRevStatus table"+""+CommonConstants.FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID);
 		return query.list();
 	}
 

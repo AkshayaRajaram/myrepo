@@ -99,6 +99,7 @@ public class VirtualMainController {
 		String productType = request.getParameter(CommonConstants.PRODUCT_TYPE);
 		try {
 			List<UnderWriter> sendUnderWriterList = virtualservice.getUnderWriterList(productType);
+			log.info("getUnderWriterList method in virtualservice class returned successfully");
 			Gson gson = new Gson();
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
@@ -111,6 +112,7 @@ public class VirtualMainController {
 		} catch (VirtualMainException e) {
 			response.setStatus(400);
 			response.getWriter().write(e.getMessage());
+			log.info(e.getMessage());
 		}
 	}
 
@@ -141,6 +143,7 @@ public class VirtualMainController {
 		} catch (VirtualMainException e) {
 			response.setStatus(400);
 			response.getWriter().write(e.getMessage());
+			log.info(e.getMessage());
 		}
 
 	}
