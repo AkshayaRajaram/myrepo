@@ -37,12 +37,12 @@ public class AccountInfoController {
 			throws VirtualMainException {
 		ModelAndView modelandview = new ModelAndView();
 		Integer accid;
-		accid = id.isEmpty()?null:id==null?null:Integer.parseInt(id);
+		accid = !id.isEmpty()?Integer.parseInt(id):null;
 		List<Account> accountList=accountInfoService.listAllAccount(accid);
-		List<DocRevStatus> DocList = accountInfoService.listDocRevsts(accid);
+		List<DocRevStatus> docList = accountInfoService.listDocRevsts(accid);
 		List<String> reviewerList = accountInfoService.listAllReviewer();
-		modelandview.addObject(CommonConstants.DOC_LIST, (DocList.isEmpty()||(DocList==null)?null:DocList.contains(null)?DocList.remove(null):DocList));
-		modelandview.addObject(CommonConstants.ACCOUNT_LIST, (accountList.isEmpty()||(accountList==null)?null:accountList.contains(null)?accountList.remove(null):accountList));
+		modelandview.addObject(CommonConstants.DOC_LIST, (!(docList.isEmpty()||docList==null))?docList:null);
+		modelandview.addObject(CommonConstants.ACCOUNT_LIST,(!(accountList.isEmpty()||accountList==null)?accountList:null));
 		modelandview.addObject(CommonConstants.REVIEWER_LIST, reviewerList);
 		modelandview.setViewName(CommonConstants.ACCOUNT_INFO);
 		return modelandview;
@@ -76,7 +76,7 @@ public class AccountInfoController {
 	 */
 	@ExceptionHandler(VirtualMainException.class)
 	public ModelAndView errorHandling(HttpServletRequest req, Exception ex, HttpServletResponse response)
-			throws IOException {
+			throws IOException,VirtualMainException {
 		ModelAndView modelandview = new ModelAndView();
 		log.error("Request" + req.getRequestURL() + "raised" + ex);
 		modelandview.addObject(CommonConstants.EXCEPTION + ex);

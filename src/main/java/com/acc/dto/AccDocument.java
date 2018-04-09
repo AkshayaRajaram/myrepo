@@ -16,7 +16,7 @@ public class AccDocument {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer acc_Doc_Id;
+	private Integer acc_doc_id;
 	
 	@OneToOne
 	@JoinColumn(name = "ACC_ID")
@@ -39,11 +39,11 @@ public class AccDocument {
 	private Date updated_Date;
 	
 	public Integer getAcc_Doc_Id() {
-		return acc_Doc_Id;
+		return acc_doc_id;
 	}
 	
 	public void setAcc_Doc_Id(Integer acc_Doc_Id) {
-		this.acc_Doc_Id = acc_Doc_Id;
+		this.acc_doc_id = acc_Doc_Id;
 	}
 	
 	public Account getAccount() {

@@ -11,9 +11,6 @@ import com.acc.exceptions.VirtualMainException;
 
 @Repository
 public class VirtualMainDaoIImpl extends AbstractDao implements VirtualMainDaoI {
-	
-	
-	
 
 	/**
 	 * Returns UnderWriter Details from database using Session Factory Object

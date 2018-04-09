@@ -2,7 +2,6 @@
 
 $(document).ready(function () {
 	var status = model.isback;
-	alert(status);
 	$("input.plan").prop("disabled", true);
     if(status === 'true') {
 		var cType = model.cType;

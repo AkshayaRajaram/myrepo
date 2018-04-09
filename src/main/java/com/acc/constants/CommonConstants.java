@@ -27,8 +27,6 @@ public class CommonConstants {
 	public static final String ACCOUNT_INFO = "accountInfo";
 	public static final String ACCOUNT_INFO_HTM = "accountInfo.htm";
 	public static final String ACCID = "accid";
-	public static final String FROM_DOC_REV_STATUS = "from DocRevStatus";
-	public static final String FROM_ACCOUNT = "from Account";
 	public static final String FROM_ACCOUNT_UW_MAPPING_M_ORDER_BY_M_ACCOUNT_ACCOUNT_ID_DESC = "from Account_UW_Mapping m ORDER BY m.account.account_Id DESC";
 	public static final String FROM_UW_MAPPING_U_ORDER_BY_U_UW_MAPPING_ID_ASC = "from UW_Mapping u ORDER BY u.uw_Mapping_Id  ASC";
 	public static final String ID2 = "id";
