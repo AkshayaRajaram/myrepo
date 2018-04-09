@@ -1,9 +1,5 @@
 package com.acc.test.service;
 
-import static org.junit.Assert.*;
-
-import static org.junit.Assert.*;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +14,15 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-import com.acc.dao.AccountInfoDaoImpl;
 import com.acc.dao.VirtualMainDaoIImpl;
 import com.acc.dto.Account;
 import com.acc.dto.Account_UW_Mapping;
-import com.acc.dto.DocRevStatus;
+
 import com.acc.dto.ProductType;
 import com.acc.dto.UW_Mapping;
 import com.acc.dto.UnderWriter;
 import com.acc.exceptions.VirtualMainException;
-import com.acc.service.AccountInfoServiceImpl;
+
 import com.acc.service.VirtualServiceImpl;
 
 public class VirtualMainServiceTest {
@@ -91,7 +86,7 @@ public class VirtualMainServiceTest {
 	public void TestNegativegetUnderWriterList() throws VirtualMainException {
 
 		Mockito.doReturn(arraylist4).when(daoMock).getUnderWriterList();
-		Assert.assertEquals(servicemock.getUnderWriterList("").size(), 0);
+		Assert.assertEquals(0,servicemock.getUnderWriterList("").size());
 	}
 
 	@Test

@@ -21,7 +21,6 @@ import com.acc.controller.AccountInfoController;
 import com.acc.dto.Account;
 import com.acc.dto.DocRevStatus;
 import com.acc.dto.Document;
-import com.acc.dto.Reviewer;
 import com.acc.dto.ValidationStatus;
 import com.acc.exceptions.VirtualMainException;
 import com.acc.service.AccountInfoServiceImpl;

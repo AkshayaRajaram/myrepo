@@ -1,7 +1,6 @@
 package com.acc.test.dao;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.acc.controller.VirtualMainController;
 import com.acc.dao.VirtualMainDaoIImpl;
 import com.acc.dto.Account_UW_Mapping;
 import com.acc.dto.UW_Mapping;
