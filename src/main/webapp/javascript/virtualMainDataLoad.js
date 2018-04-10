@@ -52,17 +52,15 @@ $(document).ready(function () {
              context: this, 
              success: function (data) {
                   json: data 
-                  var ud=$('#underwriters');
-                  ud.find('option').remove(); 
-                  ud.empty().append('<option selected="selected" value="0">Please select an underwriter</option>');
+                  $('#underwriters').find('option').remove(); 
+                  $('#underwriters').empty().append('<option selected="selected" value="0">Please select an underwriter</option>');
                   for (var i = 0; i < data.length; i++) {
-                       var mydata = data[i];
-                       $('#underwriters').append($("<option></option>").val(mydata.underWriter_Id).html(mydata.underWriter_Name)); 
+                       $('#underwriters').append($("<option></option>").val(data[i].underWriter_Id).html(data[i].underWriter_Name)); 
                    }
                },
               error: function (request) {
                   console.log(request.responseText);
-                  window.location.replace("error.jsp?");
+                  window.location.replace("error.jsp");
                   $(".return-json").html("Some error!");
                }
           }); 
@@ -84,7 +82,6 @@ $(document).ready(function () {
                    		$(".accTable").css({'display':'block'}); 
                         $("#accountTable").find("tr:gt(0)").remove();
                         for (var i = 0; i < data.length; i++) {
-                        	var bt= $('<input/>').attr({ type: 'button', name:'btn1', value:'am button'});
                             $("#NamesGridView").after("<tr><td>" + data[i].account_Id + "</td><td>" + data[i].name +"</td><td> <button id='but1' class='botaoadd'>initiate </button><a href='accountInfo.htm?id="+data[i].account_Id+"'>fail</a> </td></tr>");
                         }
                   }

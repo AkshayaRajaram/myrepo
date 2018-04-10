@@ -86,7 +86,6 @@
 		</div>
 		<br>
 	</div>
-	<a href="account.jsp">link</a>
 </body>
 </html>
 
