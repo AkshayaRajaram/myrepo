@@ -12,67 +12,14 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/buttonDisable.js"></script>
-<script type="text/javascript">
-    function showAlert() {
-        alert("Submitted Successfully");
-    }
-</script>
-
-<script>
-$(document).ready(function(){
-     $(".eg").hide();
-    
-    $(".docslistanchor").click(function(){
-        var idname=$(this).data('divid');
-        $(".eg").hide();
-        $(idname).show();
-    });
-    
-});
-
-
-</script>
-<script>
-$(document).ready(function(){
-    $('.targetdiv').hide();
-        $("a").click(function(){
-                    $('.targetdiv').hide();
-                    $("#div"+$(this).attr("target")).show();
-                });
-            
-            
-    
-});
-</script>
-
-
-<style>
-td {
-	spacing: 5px;
-	padding: 1px;
-}
-
-.tableaccount {
-	font-family: Verdana;
-	font-size: 14px;
-}
-
-.tableaccount1 {
-	font-family: Times New Roman;
-	font-size: 16px;
-}
-</style>
+	<script type="text/javascript" src="javascript/accountInfoDataLoad.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/accountInfo.css" />
 </head>
 <body>
-
 	<div class="container-fluid">
 		<div class="row">
 			<div class="container-fluid">
 				<div class="row">
-
 					<div class="jumbotron jumbotron-fluid">
 						<div class="row">
 							<p class=" text-center text-info">ACCOUNT INFORMATION</p>
@@ -99,7 +46,6 @@ td {
 								<div class="col-lg-3">
 									<table align="center">
 										<tbody>
-
 											<tr>
 												<td class="tableaccount text-info"><Strong>Account
 														Division</Strong></td>
@@ -118,7 +64,6 @@ td {
 								<div class="col-lg-3">
 									<table align="right">
 										<tbody>
-
 											<tr>
 												<td class="tableaccount text-info"><Strong>Created
 														Date</Strong></td>
@@ -145,21 +90,11 @@ td {
 						</div>
 						<!--row for account setup  -->
 						<hr />
-
-
-
-
-
-
-
 					</div>
 					<!--jumbotron  -->
 
 				</div>
 				<!-- row -->
-
-
-
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-primary borderless">
@@ -238,29 +173,7 @@ td {
 			<!--panel body  -->
 		</div>
 		<!--panel end  -->
-
-
-
-
-
-
-
 							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						</div><!-- panel body -->
 					</div>
 					<!-- panel end -->
@@ -292,12 +205,6 @@ td {
 			</div>
 			<!-- Container fluid -->
 		</div>
-
-
-		
-
 	</div>
-
-
 </body>
 </html>
