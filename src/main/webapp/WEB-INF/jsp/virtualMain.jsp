@@ -23,7 +23,6 @@
 	model.a_list = '${aList}';
 </script>
 </head>
-
 <body>
 	<div class="classtitle">
 		<h3 align="center">Virtual Main</h3>

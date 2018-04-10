@@ -1,5 +1,4 @@
 
-
 $(document).ready(function () {
 	var status = model.isback;
 	$("input.plan").prop("disabled", true);
