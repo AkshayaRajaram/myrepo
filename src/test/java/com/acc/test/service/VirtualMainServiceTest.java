@@ -85,8 +85,10 @@ public class VirtualMainServiceTest {
 	@Test
 	public void TestNegativegetUnderWriterList() throws VirtualMainException {
 
-		Mockito.doReturn(arraylist4).when(daoMock).getUnderWriterList();
-		Assert.assertEquals(0,servicemock.getUnderWriterList("").size());
+		
+		Mockito.doReturn(new ArrayList<UW_Mapping>()).when(daoMock).getUnderWriterList();
+		Assert.assertEquals(true, (servicemock.getUnderWriterList("").isEmpty()));
+
 	}
 
 	@Test
@@ -98,8 +100,8 @@ public class VirtualMainServiceTest {
 	@Test
 	public void TestNegativegetAccountList() throws VirtualMainException {
 
-		Mockito.doReturn(null).when(daoMock).getAccountList();
-		// Assert.assertEquals(servicemock.getAccountList(0), null );
+		Mockito.doReturn(new ArrayList<Account_UW_Mapping>()).when(daoMock).getAccountList();
+		 Assert.assertEquals(true,servicemock.getAccountList(90).isEmpty());
 
 	}
 

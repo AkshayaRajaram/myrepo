@@ -53,20 +53,9 @@ public class AccountInfoServiceTest {
 		arraylist2 = getAccount();
 	}
 
-	// Testcases for AccountInfoServiceImpl functions
-	/*
-	 * @Test public void TestPositivelistAllReviewer() throws
-	 * VirtualMainException, CustomGenericException {
-	 * 
-	 * Mockito.doReturn(arraylist).when(servicemock).listAllReviewer();
-	 * Assert.assertEquals(servicemock.listAllReviewer(),arraylist); }
-	 * 
-	 * @Test public void TestNegativelistAllReviewer() throws
-	 * VirtualMainException, CustomGenericException {
-	 * 
-	 * Mockito.doReturn(null).when(servicemock).listAllReviewer();
-	 * Assert.assertEquals (servicemock.listAllReviewer(),null); }
-	 */
+	
+	
+	
 
 	@Test
 	public void TestPositivelistAllAccount() throws VirtualMainException {

@@ -74,7 +74,6 @@ public class AccountInfoControllerTest {
 		when( servicemock.listDocRevsts(1)).thenReturn(arraylist1);
 		when( servicemock.listAllReviewer()).thenReturn(reviewerList);
 		ModelAndView mav = acccon.accountinfo(request,"1");
-		System.out.println(mav.getModel().get(0));
 		assertEquals( arraylist2, mav.getModel().get( "accountList" ));
 		assertEquals( arraylist1, mav.getModel().get( "DocList" ));
 		assertEquals( reviewerList, mav.getModel().get( "reviewerList" ));
@@ -94,12 +93,6 @@ public class AccountInfoControllerTest {
 		ModelAndView mav = acccon.accountinfo(null,"");
 		//assertEquals(0,((List<Account>) mav.getModel().get("accountList")).size());
 		//assertEquals(true,mav.getModel().get("accountList")).equals(new ArrayList<Account>()));
-		System.out.println(mav.getModel().containsValue(null));
-		System.out.println(mav.getModel().get(0));
-		//assertEquals(0,((List<Document>) mav.getModel().get("DocList")).size());
-		//assertEquals(0,((List<Reviewer>) mav.getModel().get("reviewerList")).size());
-		
-		
 	}
 	
 	
@@ -131,27 +124,18 @@ public class AccountInfoControllerTest {
 		a1.setName("ACC1");
 		a1.setUpdatedBy("AAA");
 		a1.setUpdatedDate(date);
-		
-		
 		arraylist2.add(a);
 		arraylist2.add(a1);
-		
-		
 		return arraylist2;
 	}
 	
 	private List<String> getReviewerList()
 	{
-		//List<String> reviewer = new ArrayList<String>();
 		reviewerList.add("Team1");
 		reviewerList.add("Team2");
 		reviewerList.add("Team3");
 		reviewerList.add("Team4");
-		reviewerList.add("Team5");
-		/*List<String> reviewerList = new ArrayList<String>();	
-		
-		reviewerList.addAll(reviewer);*/
-		
+		reviewerList.add("Team5");		
 		return reviewerList;
 	}
 
