@@ -45,8 +45,8 @@ public class VirtualMainController {
 	}
 
 	/**
-	 * Returns Model and View Object which contains UnderWriter List, Account List,
-	 * CoverageType, UnderWriterId, ProductType
+	 * Returns Model and View Object which contains UnderWriter List, Account
+	 * List, CoverageType, UnderWriterId, ProductType
 	 * 
 	 * Stores the Session values in the model and view object
 	 * 
@@ -58,7 +58,7 @@ public class VirtualMainController {
 	 */
 	@RequestMapping(CommonConstants.VIRTUAL_MAIN_BACK_HTM)
 	public ModelAndView loadBack(HttpServletRequest request, HttpServletResponse response)
-			throws  JsonProcessingException {
+			throws JsonProcessingException {
 		ModelAndView modelandview = new ModelAndView();
 		ObjectMapper mapper = new ObjectMapper();
 		HttpSession session = request.getSession();

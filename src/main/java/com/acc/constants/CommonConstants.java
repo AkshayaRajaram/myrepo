@@ -1,8 +1,10 @@
 package com.acc.constants;
 
 public class CommonConstants {
-	
-	private CommonConstants(){}
+
+	private CommonConstants() {
+	}
+
 	public static final String GET_ACCOUNT_LIST_HTM = "getAccountList.htm";
 	public static final String GET_UNDER_WRITER_HTM = "getUnderWriter.htm";
 	public static final String VIRTUAL_MAIN_BACK_HTM = "virtualMainBack.htm";

@@ -1,7 +1,7 @@
 /**
- * 
+ * Error Message display
  */
- 
+
 $(document).ready(function() {
 	$('.targetdiv').hide();
 	$("a").click(function() {

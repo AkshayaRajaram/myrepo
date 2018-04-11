@@ -1,6 +1,5 @@
 package com.acc.dto;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,15 +12,14 @@ import javax.persistence.Table;
 @Table(name = "AccountUWMapping")
 public class AccountUWMapping extends AbstractEntity {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer accUWMappingId;
-	
+
 	@OneToOne
 	@JoinColumn(name = "accountId")
 	private Account account;
-	
+
 	@OneToOne
 	@JoinColumn(name = "underWriterId")
 	private UnderWriter underWriter;
@@ -49,5 +47,5 @@ public class AccountUWMapping extends AbstractEntity {
 	public void setUnderWriter(UnderWriter underWriter) {
 		this.underWriter = underWriter;
 	}
-	
+
 }

@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+
+import com.acc.constants.CommonConstants;
 import com.acc.dao.AccountInfoDaoImpl;
 import com.acc.dto.Account;
 import com.acc.dto.DocRevStatus;
@@ -37,6 +39,9 @@ public class AccountInfoServiceTest {
 	@Spy
 	List<Account> arraylist2 = new ArrayList<Account>();
 
+	@Spy
+	List<String> tempreviewer = new ArrayList<>();
+
 	Account a = new Account();
 	Account a1 = new Account();
 
@@ -53,9 +58,15 @@ public class AccountInfoServiceTest {
 		arraylist2 = getAccount();
 	}
 
-	
-	
-	
+	@Test
+	public void TestPositivelistAllReviewer() throws VirtualMainException {
+		tempreviewer.add(CommonConstants.TEAM1);
+		tempreviewer.add(CommonConstants.TEAM2);
+		tempreviewer.add(CommonConstants.TEAM3);
+		tempreviewer.add(CommonConstants.TEAM4);
+		tempreviewer.add(CommonConstants.TEAM5);
+		Assert.assertTrue(!tempreviewer.isEmpty());
+	}
 
 	@Test
 	public void TestPositivelistAllAccount() throws VirtualMainException {

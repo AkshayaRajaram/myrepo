@@ -7,9 +7,9 @@ import com.acc.dto.UWMapping;
 import com.acc.exceptions.VirtualMainException;
 
 public interface VirtualMainDaoI {
-	
+
 	public List<UWMapping> getUnderWriterList() throws VirtualMainException;
-	
+
 	public List<AccountUWMapping> getAccountList() throws VirtualMainException;
-	
+
 }

@@ -1,6 +1,5 @@
 package com.acc.dto;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +8,11 @@ import javax.persistence.Id;
 
 @Entity
 public class ProductType extends AbstractEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int productTypeId;
-	
+
 	@Column(name = "productType_Name")
 	String productTypeName;
 
@@ -32,5 +31,5 @@ public class ProductType extends AbstractEntity {
 	public void setProductTypeName(String productTypeName) {
 		this.productTypeName = productTypeName;
 	}
-	
+
 }

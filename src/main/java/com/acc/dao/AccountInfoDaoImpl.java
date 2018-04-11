@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+
 import com.acc.constants.CommonConstants;
 import com.acc.dto.Account;
 import com.acc.dto.DocRevStatus;
@@ -14,14 +15,14 @@ import com.acc.exceptions.VirtualMainException;
 @Repository
 public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 
-	
 	static Logger log = Logger.getLogger(AccountInfoDaoImpl.class.getName());
-	
+
 	/**
-	 * Returns Account Details from database using Session Factory Object for the provided accid
+	 * Returns Account Details from database using Session Factory Object for
+	 * the provided accid
 	 * 
-	 * @Param accid 
-	 *@return list of account
+	 * @Param accid
+	 * @return list of account
 	 * 
 	 * @throws VirtualMainException
 	 */
@@ -30,13 +31,14 @@ public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 		Session session = getSession();
 		Query query = session.createQuery(CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
 		query.setParameter(CommonConstants.ACCID2, accid);
-		log.info("Database Connected.."+" "+"Data Fetched successfully from Account table"+""+CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
+		log.info("Database Connected.." + " " + "Data Fetched successfully from Account table" + ""
+				+ CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
 		return query.list();
 	}
 
 	/**
-	 * Returns Document status information from database using Session Factory for the provided accid
-	 * Object
+	 * Returns Document status information from database using Session Factory
+	 * for the provided accid Object
 	 * 
 	 * @Param accid
 	 * @return list of document status information
@@ -47,7 +49,8 @@ public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 		Session session = getSession();
 		Query query = session.createQuery(CommonConstants.FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID);
 		query.setParameter(CommonConstants.ACCID2, accid);
-		log.info("Database Connected.."+" "+"Data Fetched successfully from DocRevStatus table"+""+CommonConstants.FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID);
+		log.info("Database Connected.." + " " + "Data Fetched successfully from DocRevStatus table" + ""
+				+ CommonConstants.FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID);
 		return query.list();
 	}
 

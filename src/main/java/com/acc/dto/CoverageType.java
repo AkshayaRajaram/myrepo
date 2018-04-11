@@ -1,6 +1,5 @@
 package com.acc.dto;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,10 +11,10 @@ public class CoverageType extends AbstractEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
-	
+
 	@Column(name = "coverageType_Id")
 	String coverageTypeId;
-	
+
 	@Column(name = "coverageType_Name")
 	String coverageTypeName;
 
@@ -42,6 +41,5 @@ public class CoverageType extends AbstractEntity {
 	public void setCoverageTypeName(String coverageTypeName) {
 		this.coverageTypeName = coverageTypeName;
 	}
-	
-	
+
 }

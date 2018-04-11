@@ -1,26 +1,25 @@
 package com.acc.dto;
 
-
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "ACC_DOCUMENT")
-public class AccDocument extends AbstractEntity{
-	
+public class AccDocument extends AbstractEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer accDocId;
-	
+
 	@OneToOne
 	@JoinColumn(name = "accountId")
 	private Account account;
-	
+
 	@OneToOne
 	@JoinColumn(name = "docId")
 	private Document document;
@@ -48,6 +47,5 @@ public class AccDocument extends AbstractEntity{
 	public void setDocument(Document document) {
 		this.document = document;
 	}
-	
-	
+
 }
