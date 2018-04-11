@@ -1,6 +1,8 @@
 package com.acc.constants;
 
 public class CommonConstants {
+	
+	private CommonConstants(){}
 	public static final String GET_ACCOUNT_LIST_HTM = "getAccountList.htm";
 	public static final String GET_UNDER_WRITER_HTM = "getUnderWriter.htm";
 	public static final String VIRTUAL_MAIN_BACK_HTM = "virtualMainBack.htm";
@@ -27,10 +29,10 @@ public class CommonConstants {
 	public static final String ACCOUNT_INFO = "accountInfo";
 	public static final String ACCOUNT_INFO_HTM = "accountInfo.htm";
 	public static final String ACCID = "accid";
-	public static final String FROM_ACCOUNT_UW_MAPPING_M_ORDER_BY_M_ACCOUNT_ACCOUNT_ID_DESC = "from Account_UW_Mapping m ORDER BY m.account.account_Id DESC";
-	public static final String FROM_UW_MAPPING_U_ORDER_BY_U_UW_MAPPING_ID_ASC = "from UW_Mapping u ORDER BY u.uw_Mapping_Id  ASC";
+	public static final String FROM_ACCOUNT_UW_MAPPING_M_ORDER_BY_M_ACCOUNT_ACCOUNT_ID_DESC = "from AccountUWMapping m ORDER BY m.account.accountId DESC";
+	public static final String FROM_UW_MAPPING_U_ORDER_BY_U_UW_MAPPING_ID_ASC = "from UWMapping u ORDER BY u.uwMappingId  ASC";
 	public static final String ID2 = "id";
-	public static final String GENERIC_ERROR = "generic_error";
+	public static final String GENERIC_ERROR = "error";
 	public static final String UNCHECKED = "unchecked";
 	public static final String EXCEPTION_MESSAGE = "Exception Message is :";
 	public static final String TEAM5 = "Team5";
@@ -42,8 +44,8 @@ public class CommonConstants {
 	public static final String MISSING = "Missing";
 	public static final String INCOMPLETE = "Incomplete";
 	public static final String ACCID2 = "accid";
-	public static final String FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID = "from Account a WHERE a.account_Id = :accid";
-	public static final String FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID = "from DocRevStatus d where d.account.account_Id =:accid";
+	public static final String FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID = "from Account a WHERE a.accountId = :accid";
+	public static final String FROM_DOC_REV_STATUS_D_WHERE_D_ACCOUNT_ACCOUNT_ID_ACCID = "from DocRevStatus d where d.account.accountId =:accid";
 	public static final String ISBACK = "isback";
 
 }

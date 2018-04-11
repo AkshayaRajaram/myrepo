@@ -31,7 +31,7 @@
 												<td class="tableaccount text-info "><Strong>Account
 														Number</Strong></td>
 												<td class="tableaccount1"><c:out
-														value="${account.account_Number}" /></td>
+														value="${account.accountNumber}" /></td>
 											</tr>
 											<tr>
 												<td class="tableaccount text-info"><Strong>Account
@@ -114,8 +114,8 @@
 										<c:forEach var="doc" items="${DocList}" varStatus="status"
 											step="1" begin="0">
 											<tr>
-												<td class="col-md-3"><a target="${status.index }">${doc.document.doc_Name}</a>
-												<td class="col-md-3">${doc.document.file_Name}</td>
+												<td class="col-md-3"><a target="${status.index }">${doc.document.docName}</a>
+												<td class="col-md-3">${doc.document.fileName}</td>
 												<td class="col-md-1"><select
 													class="form-control input-sm" id="sel1">
 													<option value="Select">Select</option>
@@ -161,8 +161,7 @@
 						</label>
 					</div>
 					<br /> <br />
-					<button type="button" class="btn btn-basic col-md-1" value="submit"
-						onclick="showAlert()">Submit</button>
+					<button type="button" class="btn btn-basic col-md-1" value="submit">Submit</button>
 					<button type="submit" class="btn btn-default col-md-1"
 						formaction="virtualMainBack.htm">Back</button>
 				</form>
@@ -185,7 +184,7 @@
 									<div class="panel-heading">Error Status of the Documents</div>
 									<div class="panel-body">
 										The Document
-										<mark>${cnt.document.doc_Name} </mark>
+										<mark>${cnt.document.docName} </mark>
 										contains errors in it. Status is
 										<mark> ${cnt.validationstatus.status}</mark>
 									<p>	Missing- Files Missings

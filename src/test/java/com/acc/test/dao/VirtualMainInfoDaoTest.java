@@ -17,9 +17,9 @@ import org.mockito.Spy;
 
 import com.acc.dao.VirtualMainDaoIImpl;
 import com.acc.dto.Account;
-import com.acc.dto.Account_UW_Mapping;
+import com.acc.dto.AccountUWMapping;
 import com.acc.dto.ProductType;
-import com.acc.dto.UW_Mapping;
+import com.acc.dto.UWMapping;
 import com.acc.dto.UnderWriter;
 import com.acc.exceptions.VirtualMainException;
 import com.acc.service.VirtualServiceImpl;
@@ -35,14 +35,14 @@ public class VirtualMainInfoDaoTest {
 	private VirtualServiceImpl serviceMock;
 	
 	@Spy
-	ArrayList<UW_Mapping> arraylist = new ArrayList<UW_Mapping>();
+	ArrayList<UWMapping> arraylist = new ArrayList<UWMapping>();
 	@Spy
-	List<Account_UW_Mapping> arraylist3 = new ArrayList<Account_UW_Mapping>();
+	List<AccountUWMapping> arraylist3 = new ArrayList<AccountUWMapping>();
 	
 	UnderWriter uw = new UnderWriter();
-	UW_Mapping uwm = new UW_Mapping();
-	Account_UW_Mapping auwm = new Account_UW_Mapping();
-	Account_UW_Mapping auwm1 = new Account_UW_Mapping();
+	UWMapping uwm = new UWMapping();
+	AccountUWMapping auwm = new AccountUWMapping();
+	AccountUWMapping auwm1 = new AccountUWMapping();
 	Account a = new Account();
 	Account a1 = new Account();
 	Date date = new Date(11, 11, 1995);
@@ -66,7 +66,7 @@ public class VirtualMainInfoDaoTest {
 	@Test
 	public void TestNegativegetUnderWriterList() throws VirtualMainException {
 
-		Mockito.doReturn(new ArrayList<UW_Mapping>()).when(daoMock).getUnderWriterList();
+		Mockito.doReturn(new ArrayList<UWMapping>()).when(daoMock).getUnderWriterList();
 		Assert.assertEquals(true, (daoMock.getUnderWriterList().isEmpty()));
 
 	}
@@ -80,11 +80,11 @@ public class VirtualMainInfoDaoTest {
 	@Test
 	public void TestNegativegetAccountList() throws VirtualMainException {
 
-		Mockito.doReturn(new ArrayList<Account_UW_Mapping>()).when(daoMock).getAccountList();
+		Mockito.doReturn(new ArrayList<AccountUWMapping>()).when(daoMock).getAccountList();
 		Assert.assertEquals(true,(daoMock).getAccountList().isEmpty());
 		
 	}
-	private List<UW_Mapping> getUW_Mapping() {
+	private List<UWMapping> getUWMapping() {
 
 		// TODO Auto-generated method stub
 
@@ -94,9 +94,9 @@ public class VirtualMainInfoDaoTest {
 		uwm.setUnderWriter(uw);
 		uwm.setUpdatedBy("BBB");
 		uwm.setUpdatedDate(date);
-		uwm.setUw_Mapping_Id(1);
-		producttype.setProductType_Id(1);
-		producttype.setProductType_Name("fan");
+		uwm.setUwMappingId(1);
+		producttype.setProductTypeId(1);
+		producttype.setProductTypeName("fan");
 		producttype.setUpdatedBy("sdbn");
 		producttype.setUpdatedDate(date);
 		producttype.setCreatedBy("asdbn");
@@ -105,10 +105,10 @@ public class VirtualMainInfoDaoTest {
 		arraylist.add(uwm);
 		return arraylist;
 	}
-	private List<Account_UW_Mapping> getAccount_UW_Mapping() {
+	private List<AccountUWMapping> getAccountUWMapping() {
 
 		// TODO Auto-generated method stub
-		auwm.setAcc_UW_Mapping_Id(1);
+		auwm.setAccUWMappingId(1);
 		auwm.setAccount(a);
 		auwm.setCreatedBy("AAA");
 		auwm.setCreatedDate(date);
@@ -116,7 +116,7 @@ public class VirtualMainInfoDaoTest {
 		auwm.setUpdatedBy("BBB");
 		auwm.setUpdatedDate(date);
 
-		auwm1.setAcc_UW_Mapping_Id(2);
+		auwm1.setAccUWMappingId(1);
 		auwm1.setAccount(a1);
 		auwm1.setCreatedBy("AAA");
 		auwm1.setCreatedDate(date);

@@ -1,9 +1,7 @@
 package com.acc.test.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-
-import org.junit.Test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,13 +17,12 @@ import javax.servlet.http.HttpSession;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acc.constants.CommonConstants;
@@ -33,7 +30,6 @@ import com.acc.controller.VirtualMainController;
 import com.acc.dto.Account;
 import com.acc.dto.UnderWriter;
 import com.acc.exceptions.VirtualMainException;
-
 import com.acc.service.VirtualServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -138,7 +134,7 @@ public class VirtualMainControllerTest {
 	private List<Account> getAccount() {
 		// TODO Auto-generated method stub
 
-		a.setAccount_Number("1001");
+		a.setAccountNumber("1001");
 		a.setCreatedBy("AAA");
 		a.setCreatedDate(date);
 		a.setDivision("---");
@@ -146,7 +142,7 @@ public class VirtualMainControllerTest {
 		a.setUpdatedBy("AAA");
 		a.setUpdatedDate(date);
 
-		a1.setAccount_Number("1002");
+		a1.setAccountNumber("1002");
 		a1.setCreatedBy("AAA");
 		a1.setCreatedDate(date);
 		a1.setDivision("---");
@@ -162,8 +158,8 @@ public class VirtualMainControllerTest {
 	private List<UnderWriter> getUnderWriterList() {
 
 		// TODO Auto-generated method stub
-		uw.setUnderWriter_Id(2);
-		uw.setUnderWriter_Name("");
+		uw.setUnderWriterId(2);
+		uw.setUnderWriterName("");
 		uw.setDivision("");
 		uw.setCreatedBy("");
 		uw.setCreatedDate(date);

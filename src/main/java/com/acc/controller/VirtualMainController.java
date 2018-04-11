@@ -58,7 +58,7 @@ public class VirtualMainController {
 	 */
 	@RequestMapping(CommonConstants.VIRTUAL_MAIN_BACK_HTM)
 	public ModelAndView loadBack(HttpServletRequest request, HttpServletResponse response)
-			throws VirtualMainException, JsonProcessingException {
+			throws  JsonProcessingException {
 		ModelAndView modelandview = new ModelAndView();
 		ObjectMapper mapper = new ObjectMapper();
 		HttpSession session = request.getSession();
@@ -67,10 +67,8 @@ public class VirtualMainController {
 		String underWriterId = (String) session.getAttribute(CommonConstants.ID);
 		List<UnderWriter> underWriterList = (List<UnderWriter>) session.getAttribute(CommonConstants.UNDER_WRITER_LIST);
 		List<Account> accountList = (List<Account>) session.getAttribute(CommonConstants.ACCOUNT_LIST);
-		String uList = "";
-		String aList = "";
-		uList = mapper.writeValueAsString(underWriterList);
-		aList = mapper.writeValueAsString(accountList);
+		String uList = mapper.writeValueAsString(underWriterList);
+		String aList = mapper.writeValueAsString(accountList);
 		modelandview.addObject(CommonConstants.U_LIST, uList);
 		modelandview.addObject(CommonConstants.A_LIST, aList);
 		modelandview.addObject(CommonConstants.COVERAGE_TYPE, coverageType);
@@ -104,7 +102,7 @@ public class VirtualMainController {
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
 			out.println(gson.toJson(sendUnderWriterList));
-			if (sendUnderWriterList.size() > 0) {
+			if (!sendUnderWriterList.isEmpty()) {
 				session.setAttribute(CommonConstants.UNDER_WRITER_LIST, sendUnderWriterList);
 				session.setAttribute(CommonConstants.COVERAGE_TYPE, coverageType);
 				session.setAttribute(CommonConstants.PRODUCT_TYPE, productType);
@@ -136,7 +134,7 @@ public class VirtualMainController {
 			response.setContentType(CommonConstants.APPLICATION_JSON);
 			PrintWriter out = response.getWriter();
 			out.println(gson.toJson(accountList));
-			if (accountList.size() > 0) {
+			if (!accountList.isEmpty()) {
 				session.setAttribute(CommonConstants.ACCOUNT_LIST, accountList);
 				session.setAttribute(CommonConstants.UNDER_WRITER_ID, id);
 			}
@@ -158,8 +156,7 @@ public class VirtualMainController {
 	 * @throws IOException
 	 */
 	@ExceptionHandler(VirtualMainException.class)
-	public ModelAndView errorHandling(HttpServletRequest req, Exception ex, HttpServletResponse response)
-			throws IOException {
+	public ModelAndView errorHandling(HttpServletRequest req, Exception ex, HttpServletResponse response) {
 		ModelAndView modelandview = new ModelAndView();
 		log.error("Request" + req.getRequestURL() + "raised" + ex);
 		modelandview.addObject(CommonConstants.EXCEPTION + ex);

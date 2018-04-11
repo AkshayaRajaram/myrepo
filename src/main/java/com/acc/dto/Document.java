@@ -1,6 +1,6 @@
 package com.acc.dto;
 
-import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,95 +8,53 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Document {
+public class Document extends AbstractEntity  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int doc_Id;
+	int docId;
 	
 	@Column(name = "doc_Name")
-	String doc_Name;
+	String docName;
 	
 	@Column(name = "division")
 	String division;
 	
 	@Column(name = "file_Name")
-	String file_Name;
+	String fileName;
+
 	
-	@Column(name = "created_By")
-	String createdBy;
-	
-	@Column(name = "created_Date")
-	Date createdDate;
-	
-	@Column(name = "updated_By")
-	String updatedBy;
-	
-	@Column(name = "updated_Date")
-	Date updatedDate;
-	
-	public int getDoc_Id() {
-		return doc_Id;
+
+	public int getDocId() {
+		return docId;
 	}
-	
-	public void setDoc_Id(int doc_Id) {
-		this.doc_Id = doc_Id;
+
+	public void setDocId(int docId) {
+		this.docId = docId;
 	}
-	
-	public String getDoc_Name() {
-		return doc_Name;
+
+	public String getDocName() {
+		return docName;
 	}
-	
-	public void setDoc_Name(String doc_Name) {
-		this.doc_Name = doc_Name;
+
+	public void setDocName(String docName) {
+		this.docName = docName;
 	}
-	
+
 	public String getDivision() {
 		return division;
 	}
-	
+
 	public void setDivision(String division) {
 		this.division = division;
 	}
-	
-	public String getFile_Name() {
-		return file_Name;
+
+	public String getFileName() {
+		return fileName;
 	}
-	
-	public void setFile_Name(String file_Name) {
-		this.file_Name = file_Name;
-	}
-	
-	public String getCreatedBy() {
-		return createdBy;
-	}
-	
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-	
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-	
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 }

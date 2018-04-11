@@ -73,30 +73,31 @@ public class AccountInfoControllerTest {
 		when( servicemock.listAllAccount(1)).thenReturn(arraylist2);
 		when( servicemock.listDocRevsts(1)).thenReturn(arraylist1);
 		when( servicemock.listAllReviewer()).thenReturn(reviewerList);
+		
 		ModelAndView mav = acccon.accountinfo(request,"1");
 		assertEquals( arraylist2, mav.getModel().get( "accountList" ));
 		assertEquals( arraylist1, mav.getModel().get( "DocList" ));
 		assertEquals( reviewerList, mav.getModel().get( "reviewerList" ));
 		assertEquals( "accountInfo", mav.getViewName());
 		
+		
+	
+		
+		when( servicemock.listAllAccount(0)).thenReturn(new ArrayList<Account>());
+		when( servicemock.listDocRevsts(0)).thenReturn(new ArrayList<DocRevStatus>());
+		when( servicemock.listAllReviewer()).thenReturn(reviewerList);
+		String accid="";
+		 mav = acccon.accountinfo(request,accid);
+		 assertFalse(mav.getModel().containsValue(getAccount()));
+		 assertFalse(mav.getModel().containsValue(getDocRevStatus()));
+			assertEquals( reviewerList, mav.getModel().get( "reviewerList" ));
+			assertEquals( "accountInfo", mav.getViewName());
+		  
+			System.out.println(mav.getModel().containsValue(getAccount()));
+			
 	}
 	
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public void TestNegativeAccountInfo() throws  VirtualMainException
-	{
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-		when( servicemock.listAllAccount(60)).thenReturn(arraylist2);
-		when( servicemock.listDocRevsts(60)).thenReturn(arraylist1);
-		when( servicemock.listAllReviewer()).thenReturn(reviewerList);	
-		ModelAndView mav = acccon.accountinfo(null,"");
-		//assertEquals(0,((List<Account>) mav.getModel().get("accountList")).size());
-		//assertEquals(true,mav.getModel().get("accountList")).equals(new ArrayList<Account>()));
-	}
-	
-	
-	
 	@Test
 	public void TestAccountSave()
 	{
@@ -106,8 +107,8 @@ public class AccountInfoControllerTest {
 	private List<Account> getAccount() {
 		// TODO Auto-generated method stub
 	
-		a.setAccount_Id(1);
-		a.setAccount_Number("1001");
+		a.setAccountId(1);
+		a.setAccountNumber("1001");
 		a.setCreatedBy("AAA");
 		a.setCreatedDate(date);
 		a.setDivision("---");
@@ -116,8 +117,8 @@ public class AccountInfoControllerTest {
 		a.setUpdatedDate(date);
 		
 		
-	    a1.setAccount_Id(2);
-		a1.setAccount_Number("1001");
+	    a1.setAccountId(2);
+		a1.setAccountNumber("1001");
 		a1.setCreatedBy("AAA");
 		a1.setCreatedDate(date);
 		a1.setDivision("---");
@@ -146,9 +147,9 @@ public class AccountInfoControllerTest {
 		d.setCreatedBy("");
 		d.setCreatedDate(date);
 		d.setDivision("");
-		d.setDoc_Id(1);
-		d.setDoc_Name("doc1");
-		d.setFile_Name("file1");
+		d.setDocId(1);
+		d.setDocName("doc1");
+		d.setFileName("file1");
 		d.setUpdatedBy("");
 		d.setUpdatedDate(date);
 
@@ -156,18 +157,18 @@ public class AccountInfoControllerTest {
 		v.setCreatedBy("");
 		v.setCreatedDate(date);
 		v.setStatus("MISSED");
-		v.setStatus_Id(2);
+		v.setStatusId(2);
 		v.setUpdatedBy("");
 		v.setUpdatedDate(date);
 
 		DocRevStatus drs = new DocRevStatus();
 		drs.setAccount(a);
-		drs.setCreated_By("");
-		drs.setCreated_Date(date);
-		drs.setDoc_Rev_Status_Id(1);
+		drs.setCreatedBy("");
+		drs.setCreatedDate(date);
+		drs.setDocRevStatusId(1);
 		drs.setDocument(d);
-		drs.setUpdated_By("");
-		drs.setUpdated_Date(date);
+		drs.setUpdatedBy("");
+		drs.setUpdatedDate(date);
 		drs.setValidationstatus(v);
 
 		arraylist1.add(drs);

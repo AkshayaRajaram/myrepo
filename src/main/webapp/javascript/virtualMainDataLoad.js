@@ -16,14 +16,13 @@ $(document).ready(function () {
 		$('#underwriters').find('option').remove(); 
 		$('#underwriters').empty().append('<option selected="selected" value="0">Please select an underwriter</option>');
 		$.each(JSON.parse(u_list), function (index, value) {
-		$('#underwriters').append($("<option></option>").val(value.underWriter_Id).html(value.underWriter_Name)); });
+		$('#underwriters').append($("<option></option>").val(value.underWriterId).html(value.underWriterName)); });
 		$('#underwriters').val(u_id).change();
 // to populate table records
 		$(".accTable").css({'display' : 'block'});
 		$("#accountTable").find("tr:gt(0)").remove();
 		$.each(JSON.parse(a_list), function (index, value) {
-			var bt = $('<input/>').attr({type : 'button',name : 'btn1',value : 'am button'});
-			$("#NamesGridView").after("<tr><td>"+ value.account_Id+ "</td><td>"+ value.name+ "</td><td> <button id='but1' class='botaoadd'>initiate </button><a href='accountInfo.htm?id="+ value.account_Id+ "'>fail</a> </td></tr>");});
+			$("#NamesGridView").after("<tr><td>"+ value.accountId+ "</td><td>"+ value.name+ "</td><td> <button id='but1' class='botaoadd'>initiate </button><a href='accountInfo.htm?id="+ value.accountId+ "'>fail</a> </td></tr>");});
     }
 			
 	$('.cov_Type').on('change', function() {
@@ -54,7 +53,7 @@ $(document).ready(function () {
                   $('#underwriters').find('option').remove(); 
                   $('#underwriters').empty().append('<option selected="selected" value="0">Please select an underwriter</option>');
                   for (var i = 0; i < data.length; i++) {
-                       $('#underwriters').append($("<option></option>").val(data[i].underWriter_Id).html(data[i].underWriter_Name)); 
+                       $('#underwriters').append($("<option></option>").val(data[i].underWriterId).html(data[i].underWriterName)); 
                    }
                },
               error: function (request) {
@@ -81,7 +80,7 @@ $(document).ready(function () {
                    		$(".accTable").css({'display':'block'}); 
                         $("#accountTable").find("tr:gt(0)").remove();
                         for (var i = 0; i < data.length; i++) {
-                            $("#NamesGridView").after("<tr><td>" + data[i].account_Id + "</td><td>" + data[i].name +"</td><td> <button id='but1' class='botaoadd'>initiate </button><a href='accountInfo.htm?id="+data[i].account_Id+"'>fail</a> </td></tr>");
+                            $("#NamesGridView").after("<tr><td>" + data[i].accountId + "</td><td>" + data[i].name +"</td><td> <button id='but1' class='botaoadd'>initiate </button><a href='accountInfo.htm?id="+data[i].accountId+"'>fail</a> </td></tr>");
                         }
                   }
               },
