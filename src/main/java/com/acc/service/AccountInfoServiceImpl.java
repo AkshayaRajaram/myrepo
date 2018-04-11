@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.acc.constants.CommonConstants;
 import com.acc.dao.AccountInfoDao;
-import com.acc.dao.AccountInfoDaoImpl;
 import com.acc.dto.Account;
 import com.acc.dto.DocRevStatus;
 import com.acc.exceptions.VirtualMainException;
@@ -29,7 +28,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 	 * @return reviewer list
 	 */
 	public List<String> listAllReviewer() {
-		List<String> tempreviewer = new ArrayList<String>();
+		List<String> tempreviewer = new ArrayList<>();
 		tempreviewer.add(CommonConstants.TEAM1);
 		tempreviewer.add(CommonConstants.TEAM2);
 		tempreviewer.add(CommonConstants.TEAM3);

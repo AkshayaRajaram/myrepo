@@ -28,7 +28,6 @@ public class AccountInfoDaoImpl extends AbstractDao implements AccountInfoDao {
 
 	public List<Account> listAllAccount(Integer accid) throws VirtualMainException {
 		Session session = getSession();
-		//Session session=null;
 		Query query = session.createQuery(CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);
 		query.setParameter(CommonConstants.ACCID2, accid);
 		log.info("Database Connected.."+" "+"Data Fetched successfully from Account table"+""+CommonConstants.FROM_ACCOUNT_A_WHERE_A_ACCOUNT_ID_ACCID);

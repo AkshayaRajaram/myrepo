@@ -1,9 +1,7 @@
 /**
  * 
  */
-  function showAlert() {
-        alert("Submitted Successfully");
-    }
+ 
 $(document).ready(function() {
 	$('.targetdiv').hide();
 	$("a").click(function() {

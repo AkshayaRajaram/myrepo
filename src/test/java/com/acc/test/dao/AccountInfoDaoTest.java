@@ -74,8 +74,8 @@ public class AccountInfoDaoTest {
 	private List<Account> getAccount() {
 		// TODO Auto-generated method stub
 
-		a.setAccount_Id(1);
-		a.setAccount_Number("1001");
+		a.setAccountId(1);
+		a.setAccountNumber("1001");
 		a.setCreatedBy("AAA");
 		a.setCreatedDate(date);
 		a.setDivision("---");
@@ -95,9 +95,9 @@ public class AccountInfoDaoTest {
 		d.setCreatedBy("");
 		d.setCreatedDate(date);
 		d.setDivision("");
-		d.setDoc_Id(1);
-		d.setDoc_Name("doc1");
-		d.setFile_Name("file1");
+		d.setDocId(1);
+		d.setDocName("doc1");
+		d.setFileName("file1");
 		d.setUpdatedBy("");
 		d.setUpdatedDate(date);
 
@@ -105,18 +105,18 @@ public class AccountInfoDaoTest {
 		v.setCreatedBy("");
 		v.setCreatedDate(date);
 		v.setStatus("MISSED");
-		v.setStatus_Id(2);
+		v.setStatusId(2);
 		v.setUpdatedBy("");
 		v.setUpdatedDate(date);
 
 		DocRevStatus drs = new DocRevStatus();
 		drs.setAccount(a);
-		drs.setCreated_By("");
-		drs.setCreated_Date(date);
-		drs.setDoc_Rev_Status_Id(1);
+		drs.setCreatedBy("");
+		drs.setCreatedDate(date);
+		drs.setDocRevStatusId(1);
 		drs.setDocument(d);
-		drs.setUpdated_By("");
-		drs.setUpdated_Date(date);
+		drs.setUpdatedBy("");
+		drs.setUpdatedDate(date);
 		drs.setValidationstatus(v);
 
 		arraylist3.add(drs);

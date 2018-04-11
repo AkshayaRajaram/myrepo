@@ -11,7 +11,7 @@ public class VirtualMainException extends Exception {
 	 */
 	private static final long serialVersionUID = 4612760935543485294L;
 	// LOGGER to handle custom exceptions
-	private static Logger log = Logger.getLogger(VirtualMainException.class);
+	private static final Logger log = Logger.getLogger(VirtualMainException.class);
 	
 	public VirtualMainException(String message, Throwable object) {
 		super(message, object);

@@ -61,7 +61,7 @@ public class AccountInfoServiceTest {
 	public void TestPositivelistAllAccount() throws VirtualMainException {
 
 		Mockito.doReturn(arraylist2).when(daoMock).listAllAccount(1);
-		Assert.assertEquals(arraylist2.get(0).getAccount_Id(), servicemock.listAllAccount(1).get(0).getAccount_Id());
+		Assert.assertEquals(arraylist2.get(0).getAccountId(), servicemock.listAllAccount(1).get(0).getAccountId());
 
 	}
 
@@ -75,8 +75,8 @@ public class AccountInfoServiceTest {
 	@Test
 	public void TestPositivelistDocRevsts() throws VirtualMainException {
 		Mockito.doReturn(arraylist1).when(daoMock).listAccDocStatus(1);
-		Assert.assertEquals(arraylist1.get(0).getDoc_Rev_Status_Id(),
-				servicemock.listDocRevsts(1).get(0).getDoc_Rev_Status_Id());
+		Assert.assertEquals(arraylist1.get(0).getDocRevStatusId(),
+				servicemock.listDocRevsts(1).get(0).getDocRevStatusId());
 	}
 
 	@Test
@@ -90,8 +90,8 @@ public class AccountInfoServiceTest {
 	private List<Account> getAccount() {
 		// TODO Auto-generated method stub
 
-		a.setAccount_Id(1);
-		a.setAccount_Number("1001");
+		a.setAccountId(1);
+		a.setAccountNumber("1001");
 		a.setCreatedBy("AAA");
 		a.setCreatedDate(date);
 		a.setDivision("---");
@@ -111,9 +111,9 @@ public class AccountInfoServiceTest {
 		d.setCreatedBy("");
 		d.setCreatedDate(date);
 		d.setDivision("");
-		d.setDoc_Id(1);
-		d.setDoc_Name("doc1");
-		d.setFile_Name("file1");
+		d.setDocId(1);
+		d.setDocName("doc1");
+		d.setFileName("file1");
 		d.setUpdatedBy("");
 		d.setUpdatedDate(date);
 
@@ -121,18 +121,18 @@ public class AccountInfoServiceTest {
 		v.setCreatedBy("");
 		v.setCreatedDate(date);
 		v.setStatus("MISSED");
-		v.setStatus_Id(2);
+		v.setStatusId(2);
 		v.setUpdatedBy("");
 		v.setUpdatedDate(date);
 
 		DocRevStatus drs = new DocRevStatus();
 		drs.setAccount(a);
-		drs.setCreated_By("");
-		drs.setCreated_Date(date);
-		drs.setDoc_Rev_Status_Id(1);
+		drs.setCreatedBy("");
+		drs.setCreatedDate(date);
+		drs.setDocRevStatusId(1);
 		drs.setDocument(d);
-		drs.setUpdated_By("");
-		drs.setUpdated_Date(date);
+		drs.setUpdatedBy("");
+		drs.setUpdatedDate(date);
 		drs.setValidationstatus(v);
 
 		arraylist1.add(drs);

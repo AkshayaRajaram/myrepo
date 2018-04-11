@@ -7,10 +7,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.acc.dao.VirtualMainDaoI;
 import com.acc.dto.Account;
-import com.acc.dto.Account_UW_Mapping;
-import com.acc.dto.UW_Mapping;
+import com.acc.dto.AccountUWMapping;
+import com.acc.dto.UWMapping;
 import com.acc.dto.UnderWriter;
 import com.acc.exceptions.VirtualMainException;
 
@@ -32,15 +33,15 @@ public class VirtualServiceImpl implements VirtualService {
 	 */
 	@Transactional(readOnly = true)
 	public List<UnderWriter> getUnderWriterList(String productType) throws VirtualMainException {
-		ArrayList<UnderWriter> UnderWriterList = new ArrayList<UnderWriter>();
-		List<UW_Mapping> UW_Mapping = virtualmaindao.getUnderWriterList();
+		ArrayList<UnderWriter> underWriterList = new ArrayList<>();
+		List<UWMapping> uWMapping = virtualmaindao.getUnderWriterList();
 		log.info("getUnderWriterList method in virtualmaindao class returned successfully");
-		for (UW_Mapping uw_map : UW_Mapping) {
-			if (uw_map.getProductType().getProductType_Name().equals(productType)) {
-				UnderWriterList.add(uw_map.getUnderWriter());
+		for (UWMapping uwmap : uWMapping) {
+			if (uwmap.getProductType().getProductTypeName().equals(productType)) {
+				underWriterList.add(uwmap.getUnderWriter());
 			}
 		}
-		return UnderWriterList;
+		return underWriterList;
 	}
 
 	/**
@@ -54,11 +55,11 @@ public class VirtualServiceImpl implements VirtualService {
 	 */
 	@Transactional(readOnly = true)
 	public List<Account> getAccountList(int underWriterId) throws VirtualMainException {
-		ArrayList<Account> accountList = new ArrayList<Account>();
-		List<Account_UW_Mapping> UW_Account_Mapping = virtualmaindao.getAccountList();
+		ArrayList<Account> accountList = new ArrayList<>();
+		List<AccountUWMapping> uWAccountMapping = virtualmaindao.getAccountList();
 		log.info("getAccountList method in virtualmaindao class returned successfully");
-		for (Account_UW_Mapping map : UW_Account_Mapping) {
-			if (map.getUnderWriter().getUnderWriter_Id() == underWriterId) {
+		for (AccountUWMapping map : uWAccountMapping) {
+			if (map.getUnderWriter().getUnderWriterId() == underWriterId) {
 				accountList.add(map.getAccount());
 			}
 		}
