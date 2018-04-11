@@ -80,7 +80,9 @@ public class VirtualMainController {
 	}
 
 	/**
+	 * JSON Object for UnderWriterList when an ajax call is hit
 	 * 
+	 * Stores the Session values 
 	 * 
 	 * @param request
 	 * @param response
@@ -115,7 +117,9 @@ public class VirtualMainController {
 	}
 
 	/**
+	 *  JSON Object for AccountList when an ajax call is hit
 	 * 
+	 * Stores the Session values 
 	 * 
 	 * @param request
 	 * @param response

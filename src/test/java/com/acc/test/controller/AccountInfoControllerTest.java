@@ -89,9 +89,6 @@ public class AccountInfoControllerTest {
 		assertFalse(mav.getModel().containsValue(getDocRevStatus()));
 		assertEquals(reviewerList, mav.getModel().get("reviewerList"));
 		assertEquals("accountInfo", mav.getViewName());
-
-		System.out.println(mav.getModel().containsValue(getAccount()));
-
 	}
 
 	@Test
