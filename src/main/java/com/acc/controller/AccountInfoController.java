@@ -21,7 +21,7 @@ public class AccountInfoController extends AbstractController {
 	@Autowired
 	AccountInfoService accountInfoService;
 
-	static Logger log = Logger.getLogger(VirtualMainController.class.getName());
+	static Logger log = Logger.getLogger(AccountInfoController.class.getName());
 
 	/**
 	 * Returns Account List based on given @param id, Document List based on
