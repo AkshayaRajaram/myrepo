@@ -42,8 +42,8 @@ public class VirtualMainControllerTest {
 	@InjectMocks
 	private VirtualMainController conmock;
 
-	 @Mock 
-	 private HttpSession mockHttpSession;
+	@Mock
+	private HttpSession mockHttpSession;
 
 	@Spy
 	List<UnderWriter> arraylist1 = new ArrayList<UnderWriter>();
@@ -53,6 +53,7 @@ public class VirtualMainControllerTest {
 	Account a1 = new Account();
 	UnderWriter uw = new UnderWriter();
 	Date date = new Date(11, 11, 1995);
+
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -70,8 +71,8 @@ public class VirtualMainControllerTest {
 	public void Testload() {
 		ModelAndView mav = conmock.load(null, null);
 		assertEquals(CommonConstants.VIRTUAL_MAIN, mav.getViewName());
-		assertEquals( false, mav.getModel().get( CommonConstants.ISBACK ));
-		
+		assertEquals(false, mav.getModel().get(CommonConstants.ISBACK));
+
 	}
 
 	@Test
@@ -85,52 +86,48 @@ public class VirtualMainControllerTest {
 		when(mockHttpSession.getAttribute(CommonConstants.ID)).thenReturn("1");
 		when(mockHttpSession.getAttribute(CommonConstants.UNDER_WRITER_LIST)).thenReturn(arraylist1);
 		when(mockHttpSession.getAttribute(CommonConstants.ACCOUNT_LIST)).thenReturn(arraylist2);
-		ModelAndView mav = conmock.loadBack(request, response);		
+		ModelAndView mav = conmock.loadBack(request, response);
 		String uList = mapper.writeValueAsString(arraylist1);
 		String aList = mapper.writeValueAsString(arraylist2);
 		assertEquals(CommonConstants.VIRTUAL_MAIN, mav.getViewName());
-		assertEquals( "B", mav.getModel().get(CommonConstants.COVERAGE_TYPE));
-		assertEquals( "B1", mav.getModel().get(CommonConstants.PRODUCT_TYPE));
-		assertEquals( "1", mav.getModel().get(CommonConstants.UNDER_WRITER_ID));
-		assertEquals( uList, mav.getModel().get(CommonConstants.U_LIST));
+		assertEquals("B", mav.getModel().get(CommonConstants.COVERAGE_TYPE));
+		assertEquals("B1", mav.getModel().get(CommonConstants.PRODUCT_TYPE));
+		assertEquals("1", mav.getModel().get(CommonConstants.UNDER_WRITER_ID));
+		assertEquals(uList, mav.getModel().get(CommonConstants.U_LIST));
 		assertEquals(aList, mav.getModel().get(CommonConstants.A_LIST));
 
 	}
-	
-	
+
 	@Test
 	public void TestgetUnderWriter() throws VirtualMainException, IOException {
 		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
 		HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 		when(request.getSession()).thenReturn(mockHttpSession);
-	    when(request.getParameter(CommonConstants.PRODUCT_TYPE)).thenReturn("B1");
-	    when( servicemock.getUnderWriterList("B1")).thenReturn(arraylist1);
-	    StringWriter stringWriter = new StringWriter();
+		when(request.getParameter(CommonConstants.PRODUCT_TYPE)).thenReturn("B1");
+		when(servicemock.getUnderWriterList("B1")).thenReturn(arraylist1);
+		StringWriter stringWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(stringWriter);
 		when(response.getWriter()).thenReturn(writer);
 		conmock.getUnderWriter(request, response);
-	    Assert.assertEquals(servicemock.getUnderWriterList("B1"), arraylist1);
-	   
+		Assert.assertEquals(servicemock.getUnderWriterList("B1"), arraylist1);
 
 	}
-	
-    
+
 	@Test
-	public void TestgetAccountList() throws VirtualMainException,IOException{
+	public void TestgetAccountList() throws VirtualMainException, IOException {
 		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
 		HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
 		when(request.getSession()).thenReturn(mockHttpSession);
-	    when(request.getParameter(CommonConstants.ID)).thenReturn("1");
-	    when( servicemock.getAccountList(1)).thenReturn(arraylist2);
-	    StringWriter stringWriter = new StringWriter();
+		when(request.getParameter(CommonConstants.ID)).thenReturn("1");
+		when(servicemock.getAccountList(1)).thenReturn(arraylist2);
+		StringWriter stringWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(stringWriter);
 		when(response.getWriter()).thenReturn(writer);
 		conmock.getUnderWriter(request, response);
-	    Assert.assertEquals(servicemock.getAccountList(1), arraylist2);
-		
+		Assert.assertEquals(servicemock.getAccountList(1), arraylist2);
+
 	}
 
-	
 	private List<Account> getAccount() {
 		// TODO Auto-generated method stub
 
@@ -155,6 +152,7 @@ public class VirtualMainControllerTest {
 
 		return arraylist2;
 	}
+
 	private List<UnderWriter> getUnderWriterList() {
 
 		// TODO Auto-generated method stub

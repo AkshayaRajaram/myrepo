@@ -7,15 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.acc.exceptions.VirtualMainException;
 
 public abstract class AbstractDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	private static Logger log = Logger.getLogger(AbstractDao.class);
-	
+
 	/**
-	 * Returns Session Factory Object
-	 * If session is Not Null
-	 * Else throws Exception
+	 * Returns Session Factory Object If session is Not Null Else throws
+	 * Exception
 	 * 
 	 * @return session factory object
 	 * @throws VirtualMainException

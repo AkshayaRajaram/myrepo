@@ -20,9 +20,9 @@ import com.acc.service.AccountInfoService;
 public class AccountInfoController extends AbstractController {
 	@Autowired
 	AccountInfoService accountInfoService;
-	
+
 	static Logger log = Logger.getLogger(VirtualMainController.class.getName());
-	
+
 	/**
 	 * Returns Account List based on given @param id, Document List based on
 	 * given @param id, Reviewer List
@@ -37,21 +37,21 @@ public class AccountInfoController extends AbstractController {
 			throws VirtualMainException {
 		ModelAndView modelandview = new ModelAndView();
 		Integer accid;
-		accid = !id.isEmpty()?Integer.parseInt(id):0;
-		List<Account> accountList=accountInfoService.listAllAccount(accid);
+		accid = !id.isEmpty() ? Integer.parseInt(id) : 0;
+		List<Account> accountList = accountInfoService.listAllAccount(accid);
 		log.info("listAllAccount method in accountInfoService class returned successfully");
 		List<DocRevStatus> docList = accountInfoService.listDocRevsts(accid);
 		log.info("listDocRevsts method in accountInfoService class returned successfully");
 		List<String> reviewerList = accountInfoService.listAllReviewer();
 		log.info("listAllReviewer method in accountInfoService class returned successfully");
-		String errormessage="No data Found";
-		modelandview.addObject(CommonConstants.DOC_LIST, !docList.isEmpty()?docList:errormessage);
-		modelandview.addObject(CommonConstants.ACCOUNT_LIST, !accountList.isEmpty()?accountList:errormessage);
+		String errormessage = "No data Found";
+		modelandview.addObject(CommonConstants.DOC_LIST, !docList.isEmpty() ? docList : errormessage);
+		modelandview.addObject(CommonConstants.ACCOUNT_LIST, !accountList.isEmpty() ? accountList : errormessage);
 		modelandview.addObject(CommonConstants.REVIEWER_LIST, reviewerList);
 		modelandview.setViewName(CommonConstants.ACCOUNT_INFO);
 		return modelandview;
 	}
-	
+
 	/**
 	 * This method saves the data into the database
 	 * 

@@ -17,11 +17,7 @@
     <servlet-name>VirtualUnderwriter</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-
- 
-     
-      
-     <!-- loading integration components-->
+  <!-- loading integration components-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -32,5 +28,4 @@
         <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-   
-</web-app>
+   </web-app>

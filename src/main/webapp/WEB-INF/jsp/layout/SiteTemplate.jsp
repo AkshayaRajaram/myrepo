@@ -50,9 +50,6 @@
 			<tiles:insertAttribute name="header" />
 		</div>
 		<div class="row content">
-			<!-- 			<div class="col-sm-3 sidenav"> -->
-			<%-- 				<tiles:insertAttribute name="menu" /> --%>
-			<!-- 			</div> -->
 			<div class="col-md-12">
 				<tiles:insertAttribute name="body" />
 			</div>

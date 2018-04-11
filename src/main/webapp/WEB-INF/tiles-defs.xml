@@ -1,36 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE tiles-definitions PUBLIC
     "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
 <tiles-definitions>
-
-                <definition name="baseLayout" template="/WEB-INF/jsp/layout/SiteTemplate.jsp">
-                                <put-attribute name="title" value="Virtual Underwriter" />
-                                <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
-                                <put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />
-                                <put-attribute name="body" value="/WEB-INF/jsp/layout/body.jsp" />
-                                <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
-                </definition>
-
-              <definition name="virtualMain" extends="baseLayout">
-                                <put-attribute name="title" value="virtual Main" />
-                                <put-attribute name="body"
-                                                value="/WEB-INF/jsp/virtualMain.jsp" />
-                                                
-                </definition>
-              
-                
-                 <definition name="accountInfo" extends="baseLayout">
-                                <put-attribute name="title" value="account Info" />
-                                <put-attribute name="body"
-                                                value="/WEB-INF/jsp/accountInfo.jsp" />
-                                                
-                </definition>
-                
- 
- 
- </tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/jsp/layout/SiteTemplate.jsp">
+		<put-attribute name="title" value="Virtual Underwriter" />
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/layout/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+	</definition>
+	<definition name="virtualMain" extends="baseLayout">
+		<put-attribute name="title" value="virtual Main" />
+		<put-attribute name="body" value="/WEB-INF/jsp/virtualMain.jsp" />
+	</definition>
+	<definition name="accountInfo" extends="baseLayout">
+		<put-attribute name="title" value="account Info" />
+		<put-attribute name="body" value="/WEB-INF/jsp/accountInfo.jsp" />
+	</definition>
+</tiles-definitions>
 
 

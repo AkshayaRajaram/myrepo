@@ -12,21 +12,18 @@ import javax.persistence.Table;
 @Table(name = "UWMAPPING")
 public class UWMapping extends AbstractEntity {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer uwMappingId;
-	
 
 	@OneToOne
 	@JoinColumn(name = "productTypeId")
 	private ProductType productType;
-	
+
 	@OneToOne
 	@JoinColumn(name = "underWriterId")
 	private UnderWriter underWriter;
-	
-	
+
 	public Integer getUwMappingId() {
 		return uwMappingId;
 	}
@@ -51,5 +48,4 @@ public class UWMapping extends AbstractEntity {
 		this.underWriter = underWriter;
 	}
 
-	
 }

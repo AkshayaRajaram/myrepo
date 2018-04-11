@@ -7,20 +7,18 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
-	
+
 	@Column(name = "createdBy")
 	String createdBy;
-	
+
 	@Column(name = "createdDate")
 	Date createdDate;
-	
+
 	@Column(name = "updatedBy")
 	String updatedBy;
-	
 
 	@Column(name = "updatedDate")
 	Date updatedDate;
-	
 
 	public String getCreatedBy() {
 		return createdBy;

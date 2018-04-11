@@ -1,6 +1,5 @@
 package com.acc.dto;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Validation_Status")
-public class ValidationStatus extends AbstractEntity{
-	
+public class ValidationStatus extends AbstractEntity {
+
 	public int getStatusId() {
 		return statusId;
 	}
@@ -31,10 +30,8 @@ public class ValidationStatus extends AbstractEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int statusId;
-	
+
 	@Column(name = "status")
 	String status;
-	
-	
-	
+
 }

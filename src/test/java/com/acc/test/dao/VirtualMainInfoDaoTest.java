@@ -1,7 +1,5 @@
 package com.acc.test.dao;
 
-
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,21 +22,19 @@ import com.acc.dto.UnderWriter;
 import com.acc.exceptions.VirtualMainException;
 import com.acc.service.VirtualServiceImpl;
 
-
 public class VirtualMainInfoDaoTest {
-
 
 	@Mock
 	private VirtualMainDaoIImpl daoMock;
-	
+
 	@Mock
 	private VirtualServiceImpl serviceMock;
-	
+
 	@Spy
 	ArrayList<UWMapping> arraylist = new ArrayList<UWMapping>();
 	@Spy
 	List<AccountUWMapping> arraylist3 = new ArrayList<AccountUWMapping>();
-	
+
 	UnderWriter uw = new UnderWriter();
 	UWMapping uwm = new UWMapping();
 	AccountUWMapping auwm = new AccountUWMapping();
@@ -59,10 +55,10 @@ public class VirtualMainInfoDaoTest {
 
 	@Test
 	public void TestPositivegetUnderWriterList() throws VirtualMainException {
-       Mockito.doReturn(arraylist).when(daoMock).getUnderWriterList();
+		Mockito.doReturn(arraylist).when(daoMock).getUnderWriterList();
 		Assert.assertEquals(arraylist, daoMock.getUnderWriterList());
 	}
-	
+
 	@Test
 	public void TestNegativegetUnderWriterList() throws VirtualMainException {
 
@@ -74,16 +70,17 @@ public class VirtualMainInfoDaoTest {
 	@Test
 	public void TestPositivegetAccountList() throws VirtualMainException {
 		Mockito.doReturn(arraylist3).when(daoMock).getAccountList();
-	    Assert.assertEquals(arraylist3, daoMock.getAccountList());
+		Assert.assertEquals(arraylist3, daoMock.getAccountList());
 	}
 
 	@Test
 	public void TestNegativegetAccountList() throws VirtualMainException {
 
 		Mockito.doReturn(new ArrayList<AccountUWMapping>()).when(daoMock).getAccountList();
-		Assert.assertEquals(true,(daoMock).getAccountList().isEmpty());
-		
+		Assert.assertEquals(true, (daoMock).getAccountList().isEmpty());
+
 	}
+
 	private List<UWMapping> getUWMapping() {
 
 		// TODO Auto-generated method stub
@@ -105,6 +102,7 @@ public class VirtualMainInfoDaoTest {
 		arraylist.add(uwm);
 		return arraylist;
 	}
+
 	private List<AccountUWMapping> getAccountUWMapping() {
 
 		// TODO Auto-generated method stub

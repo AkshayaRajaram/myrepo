@@ -12,8 +12,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="javascript/accountInfoDataLoad.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/accountInfo.css" />
+<script type="text/javascript" src="javascript/accountInfoDataLoad.js"></script>
+<link rel="stylesheet" type="text/css" href="css/accountInfo.css" />
 </head>
 <body>
 	<div class="container-fluid">
@@ -98,8 +98,9 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-primary borderless">
-<!-- 							<div class="panel-heading">Documents Information</div>
- -->							<div class="panel-body">
+							<!-- 							<div class="panel-heading">Documents Information</div>
+ -->
+							<div class="panel-body">
 
 
 								<table class="table table-condensed table-striped">
@@ -118,7 +119,7 @@
 												<td class="col-md-3">${doc.document.fileName}</td>
 												<td class="col-md-1"><select
 													class="form-control input-sm" id="sel1">
-													<option value="Select">Select</option>
+														<option value="Select">Select</option>
 														<option value="Missing">Missing</option>
 														<option value="Incorrect">Incorrect</option>
 														<option value="Impossible">Impossible</option>
@@ -130,50 +131,53 @@
 								</table>
 
 
-<!--     <div class="container col-md-8"> -->
-		<div class="panel borderless">
-			<div class="panel-body">
-				<form>
-					<div class="form-group">
-						<label class="col-md-2" for="Comments">Comments</label>
-						<textarea class="form-control" id="Comments" rows="3"
-							placeholder="Enter Your Comments here..."></textarea>
-					</div>
-					<div class="form-group">
-						<label class="col-md-2" for="sel1">Reviewer</label>
+								<!--     <div class="container col-md-8"> -->
+								<div class="panel borderless">
+									<div class="panel-body">
+										<form>
+											<div class="form-group">
+												<label class="col-md-2" for="Comments">Comments</label>
+												<textarea class="form-control" id="Comments" rows="3"
+													placeholder="Enter Your Comments here..."></textarea>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2" for="sel1">Reviewer</label>
 
-						<div class="col-md-2">
-							<select class="form-control input-sm" id="sel1">
-								<c:forEach var="line1" items="${reviewerList}">
-									<option><c:out value="${line1}" /></option>
-								</c:forEach>
-							</select>
-						</div>
-					</div>
-					<br /> <br />
-					<div class="form-group">
-						<label class="col-md-2" for="optradio">Status</label> <label
-							class="radio-inline"> <input type="radio" name="optradio">Approved
-						</label> <label class="radio-inline"> <input type="radio"
-							name="optradio">Not Approved
-						</label> <label class="radio-inline"> <input type="radio"
-							name="optradio" checked="">Other Options
-						</label>
-					</div>
-					<br /> <br />
-					<button type="button" class="btn btn-basic col-md-1" value="submit">Submit</button>
-					<button type="submit" class="btn btn-default col-md-1"
-						formaction="virtualMainBack.htm">Back</button>
-				</form>
-				<!--     </div> -->
+												<div class="col-md-2">
+													<select class="form-control input-sm" id="sel1">
+														<c:forEach var="line1" items="${reviewerList}">
+															<option><c:out value="${line1}" /></option>
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+											<br /> <br />
+											<div class="form-group">
+												<label class="col-md-2" for="optradio">Status</label> <label
+													class="radio-inline"> <input type="radio"
+													name="optradio">Approved
+												</label> <label class="radio-inline"> <input type="radio"
+													name="optradio">Not Approved
+												</label> <label class="radio-inline"> <input type="radio"
+													name="optradio" checked="">Other Options
+												</label>
+											</div>
+											<br /> <br />
+											<button type="button" class="btn btn-basic col-md-1"
+												value="submit">Submit</button>
+											<button type="submit" class="btn btn-default col-md-1"
+												formaction="virtualMainBack.htm">Back</button>
+										</form>
+										<!--     </div> -->
 
 
-			</div>
-			<!--panel body  -->
-		</div>
-		<!--panel end  -->
+									</div>
+									<!--panel body  -->
+								</div>
+								<!--panel end  -->
 							</div>
-						</div><!-- panel body -->
+						</div>
+						<!-- panel body -->
 					</div>
 					<!-- panel end -->
 					<div class="col-md-4">
@@ -187,10 +191,8 @@
 										<mark>${cnt.document.docName} </mark>
 										contains errors in it. Status is
 										<mark> ${cnt.validationstatus.status}</mark>
-									<p>	Missing- Files Missings
-										Incomplete - Incompete data
-										Incorrect - Incorrect data
-										</p>
+										<p>Missing- Files Missings Incomplete - Incompete data
+											Incorrect - Incorrect data</p>
 									</div>
 								</div>
 							</div>

@@ -53,9 +53,9 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 	}
 
 	/**
-	 * Adds the Document Status information to a list based on accountID creates map
-	 * to store document status(missing,incorrect,incomplete) as true or false
-	 * Returns document status
+	 * Adds the Document Status information to a list based on accountID creates
+	 * map to store document status(missing,incorrect,incomplete) as true or
+	 * false Returns document status
 	 * 
 	 * @return document status list
 	 * @param accid
@@ -65,7 +65,12 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 	@Transactional(readOnly = true)
 	public List<DocRevStatus> listDocRevsts(Integer accid) throws VirtualMainException {
 		List<DocRevStatus> docrevsts = accountinfodao.listAccDocStatus(accid);
+		List<DocRevStatus> docrevstsfail = new ArrayList<>();
+		for (DocRevStatus d : docrevsts) {
+			if (d.getValidationstatus().getStatusId() != 1)
+				docrevstsfail.add(d);
+		}
 		log.info("listAccDocStatus method in AccountInfoDao class returned successsfully");
-		return docrevsts;
+		return docrevstsfail;
 	}
 }

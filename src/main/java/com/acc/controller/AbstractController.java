@@ -6,10 +6,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.acc.constants.CommonConstants;
 
-
 @ControllerAdvice
 public abstract class AbstractController {
-	
+
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleAllException(Exception ex) {
 		ModelAndView model = new ModelAndView();
@@ -17,5 +16,5 @@ public abstract class AbstractController {
 		model.setViewName(CommonConstants.GENERIC_ERROR);
 		return model;
 	}
-	
+
 }

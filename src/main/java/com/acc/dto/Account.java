@@ -1,6 +1,5 @@
 package com.acc.dto;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +10,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ACCOUNT")
 public class Account extends AbstractEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int accountId;
-	
+
 	@Column(name = "account_Number")
 	String accountNumber;
-	
+
 	@Column(name = "name")
 	String name;
-	
+
 	@Column(name = "division")
 	String division;
 
@@ -56,6 +55,5 @@ public class Account extends AbstractEntity {
 	public void setDivision(String division) {
 		this.division = division;
 	}
-	
-	
+
 }

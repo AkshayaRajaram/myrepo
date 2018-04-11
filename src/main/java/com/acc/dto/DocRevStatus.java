@@ -1,29 +1,29 @@
 package com.acc.dto;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "DOC_REV_STATUS")
 public class DocRevStatus extends AbstractEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer docRevStatusId;
-	
+
 	@OneToOne
 	@JoinColumn(name = "accountId")
 	private Account account;
-	
+
 	@OneToOne
 	@JoinColumn(name = "docId")
 	private Document document;
-	
+
 	@OneToOne
 	@JoinColumn(name = "statusId")
 	private ValidationStatus validationstatus;
