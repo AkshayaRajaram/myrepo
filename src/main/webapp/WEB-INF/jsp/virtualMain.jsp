@@ -24,6 +24,7 @@
 <body>
 	<div class="classtitle">
 		<h3 align="center">Virtual Main</h3>
+		<a href = "sample.htm">Admin</a>
 	</div>
 	<div class="classtitle">
 		<form id="picker">
@@ -71,6 +72,7 @@
 			</table>
 		</form>
 		<div align="center">
+		<label>UnderWriter List:</label>
 			<select class="uwList" id="underwriters">
 				<option>Please select an underwriter</option>
 			</select>
