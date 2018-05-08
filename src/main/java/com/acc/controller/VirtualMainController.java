@@ -67,8 +67,11 @@ public class VirtualMainController {
 		String underWriterId = (String) session.getAttribute(CommonConstants.ID);
 		List<UnderWriter> underWriterList = (List<UnderWriter>) session.getAttribute(CommonConstants.UNDER_WRITER_LIST);
 		List<Account> accountList = (List<Account>) session.getAttribute(CommonConstants.ACCOUNT_LIST);
-		String uList = mapper.writeValueAsString(underWriterList);
-		String aList = mapper.writeValueAsString(accountList);
+		String uList ="";
+			uList=	mapper.writeValueAsString(underWriterList);
+		
+		String aList ="";
+			aList	=mapper.writeValueAsString(accountList);
 		modelandview.addObject(CommonConstants.U_LIST, uList);
 		modelandview.addObject(CommonConstants.A_LIST, aList);
 		modelandview.addObject(CommonConstants.COVERAGE_TYPE, coverageType);
@@ -97,6 +100,7 @@ public class VirtualMainController {
 		HttpSession session = request.getSession();
 		String coverageType = request.getParameter(CommonConstants.COVERAGE_TYPE);
 		String productType = request.getParameter(CommonConstants.PRODUCT_TYPE);
+	
 		try {
 			List<UnderWriter> sendUnderWriterList = virtualservice.getUnderWriterList(productType);
 			log.info("getUnderWriterList method in virtualservice class returned successfully");
