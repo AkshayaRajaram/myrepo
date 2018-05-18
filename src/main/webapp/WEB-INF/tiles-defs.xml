@@ -18,13 +18,17 @@
 		<put-attribute name="title" value="account Info" />
 		<put-attribute name="body" value="/WEB-INF/jsp/accountInfo.jsp" />
 	</definition>
-	<definition name="sample" extends="baseLayout">
-		<put-attribute name="title" value="sample" />
-		<put-attribute name="body" value="/WEB-INF/jsp/sample.jsp" />
+	<definition name="preparetrainingdata" extends="baseLayout">
+		<put-attribute name="title" value="prepare training data" />
+		<put-attribute name="body" value="/WEB-INF/jsp/preparetrainingdata.jsp" />
 	</definition>
 	<definition name="success" extends="baseLayout">
 		<put-attribute name="title" value="success" />
 		<put-attribute name="body" value="/WEB-INF/jsp/success.jsp" />
+	</definition>
+	<definition name="memberlevelinfo" extends="baseLayout">
+		<put-attribute name="title" value="memberlevelinfo" />
+		<put-attribute name="body" value="/WEB-INF/jsp/memberlevelinfo.jsp" />
 	</definition>
 
 </tiles-definitions>

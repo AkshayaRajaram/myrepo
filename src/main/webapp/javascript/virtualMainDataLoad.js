@@ -41,6 +41,7 @@ $(document)
 											$("#NamesGridView")
 													.after(
 															"<tr><td>"
+															 +
 																	+ value.accountId
 																	+ "</td><td>"
 																	+ value.name
@@ -165,7 +166,8 @@ $(document)
 																$(
 																		"#NamesGridView")
 																		.after(
-																				"<tr><td>"
+																				"<tr><td> <input type='checkbox' name='vehicle'>"
+																				+"</td><td>"
 																						+ data[i].accountId
 																						+ "</td><td>"
 																						+ data[i].name
