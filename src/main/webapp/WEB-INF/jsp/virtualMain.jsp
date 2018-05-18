@@ -24,7 +24,7 @@
 <body>
 	<div class="classtitle">
 		<h3 align="center">Virtual Main</h3>
-		<a href = "sample.htm">Admin</a>
+		<a href = "preparetrainingdata.htm">Prepare Training Data</a>
 	</div>
 	<div class="classtitle">
 		<form id="picker">

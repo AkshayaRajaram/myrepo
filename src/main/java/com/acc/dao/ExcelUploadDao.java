@@ -11,5 +11,10 @@ public interface ExcelUploadDao {
 	public void saveExcelFile(ExcelFile excelFile) throws VirtualMainException;
 	
 	public List<ExcelFile>  listAllExcels() throws VirtualMainException;
+	
+	public ExcelFile getExcelFileById(Integer fileId) throws VirtualMainException;
+	
+	
+	public void deleteExcel(ExcelFile excelFile) throws VirtualMainException;
 
 }

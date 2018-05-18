@@ -27,4 +27,14 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 
 		
 	}
+@Transactional
+public ExcelFile getExcelFileById(Integer fileId) throws VirtualMainException {
+	return exceluploaddao.getExcelFileById(fileId);
+}
+
+@Transactional
+public void deleteExcel(ExcelFile excelFile) throws VirtualMainException {
+	 exceluploaddao.deleteExcel(excelFile);
+}
+
 }
