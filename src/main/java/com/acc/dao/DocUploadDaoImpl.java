@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import com.acc.dto.DocFile;
-import com.acc.dto.ExcelFile;
+
 import com.acc.exceptions.VirtualMainException;
 @Repository
 public class DocUploadDaoImpl extends AbstractDao implements DocUploadDao {
@@ -24,7 +24,7 @@ public class DocUploadDaoImpl extends AbstractDao implements DocUploadDao {
 		//Query query = session.createQuery("Select D.fileName,D.fileType,D.id from DocFile D");
 		//Query query = session.createQuery("from DocFile ");
 		//Query query = session.createQuery("Select new DocFile(D.fileName,D.fileType,D.id) from DocFile D");
-		Query query = session.createQuery("Select new map(D.fileName as fileName ,D.fileType as fileType,D.id as id) from DocFile D");
+		Query query = session.createQuery("Select new map(D.fileName as fileName ,D.fileType as fileType,D.id as id,D.createdDate as createdDate) from DocFile D");
 	
 		return query.list();
 	}

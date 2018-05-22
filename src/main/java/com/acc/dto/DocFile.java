@@ -1,21 +1,25 @@
 package com.acc.dto;
 
+import java.util.Comparator;
+import java.util.Date;
+
 import javax.persistence.Column;
-import javax.persistence.ColumnResult;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "docfiles")
-public class DocFile {
+public class DocFile implements Comparator<DocFile> {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name = "filename")
@@ -24,35 +28,32 @@ public class DocFile {
 	@Column(name = "filecontent")
 	private byte[] fileContent;
 
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	@Column(name = "filetype")
 	private String fileType;
-	
-	public DocFile(Integer id,String fileName,String fileType) {
-		this.id=id;
-		this.fileName= fileName;
-		this.fileType =fileType;
-	}
 
-	/*@JsonCreator
-	public DocFile(@JsonProperty("id") Integer id,    		
-    		@JsonProperty("fileName") String fileName,
-    		@JsonProperty("filetype") String filetype
-                     ) {
-        this.id = id;
-        this.fileName = fileName;
-        this.fileType = fileType;
-       
-    }*/
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createdDate")
+	@CreationTimestamp
+	private Date createdDate;
 
-	public DocFile() {
-		
-		// TODO Auto-generated constructor stub
-	}
+	/*public DocFile(Integer id, String fileName, String fileType) {
+		this.id = id;
+		this.fileName = fileName;
+		this.fileType = fileType;
+	}*/
 
 	public Integer getId() {
 		return id;
 	}
-   
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -79,6 +80,12 @@ public class DocFile {
 
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
+	}
+
+	@Override
+	public int compare(DocFile o1, DocFile o2) {
+
+		return o2.getCreatedDate().compareTo(o1.getCreatedDate());
 	}
 
 }

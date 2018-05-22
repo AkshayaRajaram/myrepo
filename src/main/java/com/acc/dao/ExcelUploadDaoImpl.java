@@ -20,7 +20,7 @@ public class ExcelUploadDaoImpl extends AbstractDao implements ExcelUploadDao {
 	public List<ExcelFile>  listAllExcels() throws VirtualMainException{
 
 			Session session = getSession();
-			Query query = session.createQuery("Select new map(e.fileName as fileName ,e.rowcount as rowcount,e.colCount as colCount,e.id as id) from ExcelFile e");
+			Query query = session.createQuery("Select new map(e.fileName as fileName ,e.rowcount as rowcount,e.colCount as colCount,e.id as id,e.createdDate as createdDate) from ExcelFile e");
 			return query.list();
 		}
 	public ExcelFile getExcelFileById(Integer excelId) throws VirtualMainException{
