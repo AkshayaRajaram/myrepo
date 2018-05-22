@@ -19,7 +19,7 @@ public class Account extends AbstractEntity {
 	String accountNumber;
 
 	@Column(name = "name")
-	String name;
+	String name ;
 
 	@Column(name = "division")
 	String division;
