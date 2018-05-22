@@ -3,9 +3,10 @@ package com.acc.controller;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,54 +22,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.acc.constants.CommonConstants;
 import com.acc.dto.DocFile;
-import com.acc.dto.ExcelFile;
-import com.acc.entity.ColumnCount;
+
 import com.acc.entity.FileUpload;
-import com.acc.entity.RowCount;
+
 import com.acc.exceptions.VirtualMainException;
 import com.acc.service.DocUploadService;
-import com.acc.service.ExcelUploadService;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
 @Controller
 public class DocUploadController {
 
 	@Autowired
 	DocUploadService docuploadservice;
-
-	@Autowired
-	ExcelUploadService exceluploadservice;
-
-
 	static Logger log = Logger.getLogger(DocUploadController.class.getName());
-	
-	
+
 	@RequestMapping(value = "listdoc.htm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String docload(HttpServletRequest request, HttpServletResponse response)
 			throws VirtualMainException, IOException {
 
-		List<DocFile> docfiles = docuploadservice.listAllDocs();
-
 		ObjectMapper mapper = new ObjectMapper();
-
-		return mapper.writeValueAsString(docfiles);
-
+		String jsonArray = mapper.writeValueAsString(docuploadservice.listAllDocs());
+		List<DocFile> asList = mapper.readValue(jsonArray, new TypeReference<List<DocFile>>() {
+		});
+		Collections.sort(asList, new DocFile());
+		return mapper.writeValueAsString(asList);
 	}
 
-	@RequestMapping(value ="uploadPdf.htm",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "uploadPdf.htm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String uploadExcel(HttpServletRequest request,HttpServletResponse response, FileUpload uploadItem)
+	public String uploadExcel(HttpServletRequest request, HttpServletResponse response, FileUpload uploadItem)
 			throws IOException, VirtualMainException {
 
-		//ModelAndView modelandview = new ModelAndView();
 		List<MultipartFile> files = uploadItem.getFile();
-
 		for (MultipartFile file : files) {
 			String fileName = file.getOriginalFilename();
 			DocFile docfile = new DocFile();
@@ -80,19 +70,19 @@ public class DocUploadController {
 			docfile.setFileContent(docfileData);
 			docuploadservice.saveDocFile(docfile);
 		}
-		List<DocFile> docfiles = docuploadservice.listAllDocs();
 		ObjectMapper mapper = new ObjectMapper();
-
-		return mapper.writeValueAsString(docfiles);
-
+		String jsonArray = mapper.writeValueAsString(docuploadservice.listAllDocs());
+		List<DocFile> asList = mapper.readValue(jsonArray, new TypeReference<List<DocFile>>() {
+		});
+		Collections.sort(asList, new DocFile());
+		return mapper.writeValueAsString(asList);
 	}
-	
-	 @RequestMapping("downloadDocument.htm")
-	 public void downloadExcel(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") String id) throws IOException, VirtualMainException {
-		
-		DocFile docFile = docuploadservice.getDocFileById(Integer.valueOf(id));
-	
 
+	@RequestMapping("downloadDocument.htm")
+	public void downloadExcel(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") String id)
+			throws IOException, VirtualMainException {
+
+		DocFile docFile = docuploadservice.getDocFileById(Integer.valueOf(id));
 		ByteArrayInputStream in = new ByteArrayInputStream(docFile.getFileContent());
 		OutputStream outStream = response.getOutputStream();
 		String fileName = URLEncoder.encode(docFile.getFileName(), "UTF-8");
@@ -106,22 +96,21 @@ public class DocUploadController {
 			outStream.write(buffer, 0, bytesRead);
 		}
 
-}
-	 
-	 @RequestMapping("deleteDoc.htm")
-	 public ModelAndView deleteExcel(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") String id) throws IOException, VirtualMainException {
-		
-		ModelAndView modelandview = new ModelAndView();
-		
-		
-			DocFile docFile = docuploadservice.getDocFileById(Integer.valueOf(id));
+	}
+
+	@RequestMapping(value = "deleteDoc.htm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String deleteExcel(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") String id)
+			throws IOException, VirtualMainException {
+
+		DocFile docFile = docuploadservice.getDocFileById(Integer.valueOf(id));
 		docuploadservice.deleteDoc(docFile);
-	
-		
-	modelandview.addObject("message", "deletedSuccessfully");
-	modelandview.setViewName("preparetrainingdata");
-	
-	return modelandview;
-			
-		 }
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonArray = mapper.writeValueAsString(docuploadservice.listAllDocs());
+		List<DocFile> asList = mapper.readValue(jsonArray, new TypeReference<List<DocFile>>() {
+		});
+		Collections.sort(asList, new DocFile());
+		return mapper.writeValueAsString(asList);
+
+	}
 }

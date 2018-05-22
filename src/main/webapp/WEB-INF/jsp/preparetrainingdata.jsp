@@ -18,26 +18,7 @@
  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
 
-<c:if test="${message == 'successUpload'}">
-		<script>
-			alert("Excel File Saved Successfully");
-		</script>
-	</c:if>
-	<c:if test="${message == 'successConversion'}">
-		<script>
-			alert("Excel File Converted to CSV Successfully");
-		</script>
-	</c:if>
-	<c:if test="${message == 'deletedSuccessfully'}">
-		<script>
-			alert("Excel File deleted Successfully");
-		</script>
-	</c:if>
-	<c:if test="${message == 'CannotDeleteExcel'}">
-		<script>
-			alert("Selected Excel file cannot be deleted as it has CSV dependency");
-		</script>
-	</c:if>
+
 	
 	
 <script>
@@ -46,8 +27,9 @@
     
     	   document.getElementById("1").checked = true;
     	  
-    	   alert("alert")
+    	  
     	   $('.document').hide();
+    	  // var unique=new Date().getTime();
     	   $.ajax({
      		  url:"listexcel.htm",
      		  method: "POST",
@@ -59,6 +41,7 @@
      			 
      	  $("#excelTable").dataTable({
      		  destroy: true,
+     		  sorting: true,
      		  data: data,
      		  columns :[
      			  {'data' : 'fileName'},
@@ -96,6 +79,7 @@
             
        	 $("#excelTable").dataTable({
    		  destroy: true,
+   		  sorting:true,
    		  data: data,
    		  columns :[
  			  {'data' : 'fileName'},
@@ -143,6 +127,7 @@
     			  json:data
     	  $("#doctable").dataTable({
     		  destroy: true,
+    		  sorting:true,
     		  data: data,
     		  columns :[
     			  {'data' : 'fileName'},
@@ -152,11 +137,12 @@
     				 return  '<a href="downloadDocument.htm?id='+row.id+'">Download</a>';}
     			  },
     			  {'render': function(data, type, row ,meta){
-    	   				 return  '<a href="deleteDoc.htm?id='+row.id+'">Delete</a>';}
+    	   				 return   "<input type='button' id='" + row.id + "' onclick='CallMe(" + row.id + ")' value='Delete'>" ;}
     	   			  }
     			 
     			  
     		  ]
+    	  
     	  });
     		  }
     	  
@@ -182,6 +168,7 @@
             
        	 $("#doctable").dataTable({
    		  destroy: true,
+   		sorting: true,
    		  data: data,
    		  columns :[
    			  {'data' : 'fileName'},
@@ -191,7 +178,7 @@
    				 return  '<a href="downloadDocument.htm?id='+row.id+'">Download</a>';}
    			  },
    			 {'render': function(data, type, row ,meta){
-   				 return  '<a href="deleteDoc.htm?id='+row.id+'">Delete</a>';}
+   				 return "<input type='button' id='" + row.id + "' onclick='CallMe(" + row.id + ")' value='Delete'>";}
    			  }
    			
    		  ]
@@ -201,9 +188,49 @@
        	 });
     	   });
     	 
+    	  
+    	   
        });
                 
-                
+       function CallMe(id){
+    	   $(document).ready(function(){
+		   $.ajax({
+	    		  url:"deleteDoc.htm",
+	    		  method: "POST",
+	    		  dataType :"json",
+	    		  data: {id:id},
+	    		  
+	    		  
+	    		  success:function(data){
+	    			  json:data
+	    			 
+	    	  $("#doctable").dataTable({
+	    		  destroy: true,
+	    		  sorting: true,
+	    		  data: data,
+	    		  columns :[
+	    			  {'data' : 'fileName'},
+	    			  {'data': 'fileType'},
+	    			  {'data': 'id'},
+	    			  {'render': function(data, type, row ,meta){
+	    				 return  '<a href="downloadDocument.htm?id='+row.id+'">Download</a>';}
+	    			  },
+	    			  {'render': function(data, type, row ,meta){
+	    	   				 return   "<input type='button' id='" + row.id + "' onclick='CallMe(" + row.id + ")' value='Delete'>"  ;}
+	    	   			  }
+	    			 
+	    			  
+	    		  ]
+	    	  
+	    	  });
+	    		  }
+	    	  
+	    	  });
+		   
+		   
+		   
+    	   });
+	   }       
 
        </script>               
 	

@@ -2,12 +2,13 @@ package com.acc.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+
 import java.io.OutputStream;
-import java.io.PrintWriter;
+
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -25,17 +26,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.acc.constants.CommonConstants;
-import com.acc.dto.DocFile;
 import com.acc.dto.ExcelFile;
 import com.acc.entity.ColumnCount;
 import com.acc.entity.FileUpload;
 import com.acc.entity.RowCount;
 import com.acc.exceptions.VirtualMainException;
-import com.acc.service.DocUploadService;
+
 import com.acc.service.ExcelUploadService;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 
 @Controller
 public class ExcelUploadController {
@@ -44,9 +43,9 @@ public class ExcelUploadController {
 	ExcelUploadService exceluploadservice;
 
 	static Logger log = Logger.getLogger(ExcelUploadController.class.getName());
-	
+
 	@RequestMapping("preparetrainingdata.htm")
-	public ModelAndView loadpage(HttpServletRequest request)throws IOException, VirtualMainException {
+	public ModelAndView loadpage(HttpServletRequest request) throws IOException, VirtualMainException {
 		ModelAndView modelandview = new ModelAndView();
 		modelandview.setViewName("preparetrainingdata");
 		return modelandview;
@@ -54,33 +53,29 @@ public class ExcelUploadController {
 
 	@RequestMapping(value = "listexcel.htm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String load(HttpServletRequest request, HttpServletResponse response) throws VirtualMainException, IOException {
-		
-		List<ExcelFile> excelFiles = exceluploadservice.listAllExcels();
-		
-		ObjectMapper mapper = new ObjectMapper();
+	public String load(HttpServletRequest request, HttpServletResponse response)
+			throws VirtualMainException, IOException {
 
-		return mapper.writeValueAsString(excelFiles);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonArray = mapper.writeValueAsString(exceluploadservice.listAllExcels());
+		List<ExcelFile> asList = mapper.readValue(jsonArray, new TypeReference<List<ExcelFile>>() {
+		});
+		Collections.sort(asList, new ExcelFile());
+		return mapper.writeValueAsString(asList);
 
 	}
 
-	@RequestMapping(value = "uploadExcel.htm",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "uploadExcel.htm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String uploadExcel(HttpServletRequest request, FileUpload uploadItem)
 			throws IOException, VirtualMainException {
 
-
 		List<MultipartFile> files = uploadItem.getFile();
-
-		
 		for (MultipartFile file : files) {
 			String fileName = file.getOriginalFilename();
-			
 			ExcelFile excelFile = new ExcelFile();
 			int position = fileName.lastIndexOf(".");
-
 			String fileType = fileName.substring(position);
-			
 
 			if (".xlsx".equals(fileType)) {
 				excelFile.setRowcount(RowCount.xlsxRowCount(file.getInputStream()));
@@ -93,26 +88,24 @@ public class ExcelUploadController {
 			}
 
 			byte[] excelfileData = IOUtils.toByteArray(file.getInputStream());
-
 			excelFile.setFileName(fileName);
-
 			excelFile.setFileContent(excelfileData);
 			exceluploadservice.saveExcelFile(excelFile);
 		}
 
-		List<ExcelFile> excelFiles = exceluploadservice.listAllExcels();
 		ObjectMapper mapper = new ObjectMapper();
-
-		return mapper.writeValueAsString(excelFiles);
-	
+		String jsonArray = mapper.writeValueAsString(exceluploadservice.listAllExcels());
+		List<ExcelFile> asList = mapper.readValue(jsonArray, new TypeReference<List<ExcelFile>>() {
+		});
+		Collections.sort(asList, new ExcelFile());
+		return mapper.writeValueAsString(asList);
 	}
 
 	@RequestMapping("downloadExcel.htm")
 	public void downloadExcel(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") String id)
 			throws IOException, VirtualMainException {
-		
-		ExcelFile excelFile = exceluploadservice.getExcelFileById(Integer.valueOf(id));
 
+		ExcelFile excelFile = exceluploadservice.getExcelFileById(Integer.valueOf(id));
 		ByteArrayInputStream in = new ByteArrayInputStream(excelFile.getFileContent());
 		OutputStream outStream = response.getOutputStream();
 		String fileName = URLEncoder.encode(excelFile.getFileName(), "UTF-8");
@@ -132,13 +125,9 @@ public class ExcelUploadController {
 	public ModelAndView deleteExcel(HttpServletRequest request, @RequestParam("id") String id)
 			throws IOException, VirtualMainException {
 		ModelAndView modelandview = new ModelAndView();
-
 		ExcelFile excelFile = exceluploadservice.getExcelFileById(Integer.valueOf(id));
-
 		exceluploadservice.deleteExcel(excelFile);
-
 		modelandview.addObject("message", "deletedSuccessfully");
-		
 		modelandview.setViewName("preparetrainingdata");
 		return modelandview;
 	}
