@@ -25,6 +25,7 @@
 	<div class="classtitle">
 		<h3 align="center">Virtual Main</h3>
 		<a href = "preparetrainingdata.htm">Prepare Training Data</a>
+		<a href ="createexcel.htm?id=175">Excel Generator</a>
 	</div>
 	<div class="classtitle">
 		<form id="picker">

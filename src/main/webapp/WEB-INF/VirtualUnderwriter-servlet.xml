@@ -36,5 +36,10 @@
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
 		p:definitions="/WEB-INF/tiles-defs.xml" />
+		<bean id="viewResolver1"
+  class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+  <property name="order" value="1"></property>
+  <property name="basename" value="views"></property>
+ </bean>
 </beans>
 
