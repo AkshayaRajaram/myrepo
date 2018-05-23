@@ -9,17 +9,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Insert title here</title>
-	<script type="text/javascript" src = "javascript/excelfilevalidation.js"></script>
-		<script type="text/javascript" src = "javascript/pdffilevalidation.js"></script>
+	
 		<script type="text/javascript" src ="javascript/buttonDisableOnLoad.js"></script>
+		<script type="text/javascript" src ="javascript/excelFileValidation.js"></script>
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	 <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css"/>
  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
+<c:if test="${message == 'deletedSuccessfully'}">
+		<script>
+			alert("Excel File Deleted Successfully");
+		</script>
 
-
-	
+	</c:if>
 	
 <script>
        $(document).ready(function(){
@@ -76,6 +79,7 @@
     		        processData:false,  
             success: function (data) {
             	json: data
+            	alert("Successfully uploaded")
             
        	 $("#excelTable").dataTable({
    		  destroy: true,
@@ -165,6 +169,7 @@
     		        processData:false,  
             success: function (data) {
             	json: data
+            	alert("Successfully uploaded")
             
        	 $("#doctable").dataTable({
    		  destroy: true,
@@ -203,7 +208,7 @@
 	    		  
 	    		  success:function(data){
 	    			  json:data
-	    			 
+	    			  alert("Successfully deleted") 
 	    	  $("#doctable").dataTable({
 	    		  destroy: true,
 	    		  sorting: true,
